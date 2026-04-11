@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
 
   header: {
     flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
-    backgroundColor: COLORS.primary, padding: SPACING.base,
+    backgroundColor: COLORS.primary, padding: SPACING.base, paddingTop: SPACING.lg,
   },
   headerTitle: { fontSize: 17, fontWeight: FONTS.heavy, color: COLORS.white },
 
