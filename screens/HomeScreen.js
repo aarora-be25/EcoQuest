@@ -23,7 +23,7 @@ export default function HomeScreen({ navigate }) {
 
         {/* Hero */}
         <LinearGradient
-  colors={['#E8F5E9', '#C8E6C9', '#A5D6A7']}
+  colors={['#A5D6A7', '#C8E6C9', '#E8F5E9']}
   style={styles.hero}
 >
           <View style={styles.logoCircle}>
