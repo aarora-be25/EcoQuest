@@ -21,7 +21,11 @@ export default function NotificationsScreen({ navigate }) {
 
   return (
     <SafeAreaView style={styles.safe}>
-
+        {/* Back */}
+        <TouchableOpacity style={styles.backBtn} onPress={() => navigate('dashboard')} activeOpacity={0.7}>
+          <Text style={styles.backText}>← Back</Text>
+        </TouchableOpacity>
+    
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Notifications</Text>
         <TouchableOpacity onPress={clearAll} activeOpacity={0.7}>
@@ -67,7 +71,10 @@ export default function NotificationsScreen({ navigate }) {
 
 const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: COLORS.bgPage },
-
+  
+  backBtn: { padding: SPACING.base, paddingBottom: 0 },
+  backText: { paddingTop: SPACING.md, fontSize: 14, fontWeight: FONTS.semibold, color: COLORS.primary },
+  
   header: {
     flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
     backgroundColor: COLORS.primary, padding: SPACING.base, paddingTop: SPACING.md,
