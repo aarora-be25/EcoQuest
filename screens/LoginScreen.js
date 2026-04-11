@@ -178,8 +178,8 @@ const styles = StyleSheet.create({
   safe:   { flex: 1, backgroundColor: COLORS.bgPage },
   scroll: { flex: 1, paddingHorizontal: SPACING.base },
 
-  backBtn: { paddingTop: SPACING.base, paddingBottom: SPACING.sm },
-  backText: { paddingTop: SPACING.xxl + SPACING.md, fontSize: 14, fontWeight: FONTS.semibold, color: COLORS.primary },
+  backBtn: { padding: SPACING.base, paddingBottom: SPACING.base },
+  backText: { paddingTop: SPACING.md, fontSize: 14, fontWeight: FONTS.semibold, color: COLORS.primary },
 
   header: { alignItems: 'center', paddingVertical: SPACING.xl },
   logoEmoji: { fontSize: 44, marginBottom: SPACING.md },
