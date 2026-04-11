@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: COLORS.bgPage },
 
   header: {
-    backgroundColor: COLORS.primary, padding: SPACING.base, paddingBottom: SPACING.md, paddingTop: SPACING.lg,
+    backgroundColor: COLORS.primary, padding: SPACING.base, paddingBottom: SPACING.md, paddingTop: SPACING.xxl,
   },
   headerTitle: { fontSize: 22, fontWeight: FONTS.heavy, color: COLORS.white },
   headerSub: { fontSize: 13, color: COLORS.primarySoft, marginTop: 3 },
