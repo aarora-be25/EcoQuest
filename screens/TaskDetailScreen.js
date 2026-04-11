@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
   scroll: { flex: 1 },
 
   backBtn: { padding: SPACING.base, paddingBottom: 0 },
-  backText: { paddingTop: SPACING.xxl + SPACING.md, fontSize: 14, fontWeight: FONTS.semibold, color: COLORS.primary },
+  backText: { paddingTop: SPACING.md, fontSize: 14, fontWeight: FONTS.semibold, color: COLORS.primary },
 
   hero: {
     backgroundColor: COLORS.primary,
