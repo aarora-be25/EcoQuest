@@ -23,7 +23,7 @@ export default function HomeScreen({ navigate }) {
 
         {/* Hero */}
         <LinearGradient
-  colors={[COLORS.primaryLight, COLORS.primaryDark]}
+  colors={[COLORS.primarySoft, COLORS.primaryDark]}
   style={styles.hero}
 >
           <View style={styles.logoCircle}>
@@ -70,10 +70,7 @@ export default function HomeScreen({ navigate }) {
         {/* CTAs */}
         <View style={styles.ctas}>
           <TouchableOpacity style={styles.btnPrimary} onPress={() => navigate('login', { mode: 'signup' })} activeOpacity={0.85}>
-            <Text style={styles.btnPrimaryText}>Create account</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.btnOutline} onPress={() => navigate('login', { mode: 'login' })} activeOpacity={0.85}>
-            <Text style={styles.btnOutlineText}>I already have an account</Text>
+            <Text style={styles.btnPrimaryText}>Login/Sign up</Text>
           </TouchableOpacity>
         </View>
 
