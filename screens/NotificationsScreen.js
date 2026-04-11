@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
     backgroundColor: COLORS.primary, padding: SPACING.base,
   },
-  backText: { fontSize: 14, fontWeight: FONTS.semibold, color: COLORS.white },
+  backText: { paddingTop: SPACING.xxl + SPACING.md, fontSize: 14, fontWeight: FONTS.semibold, color: COLORS.white },
   headerTitle: { fontSize: 17, fontWeight: FONTS.heavy, color: COLORS.white },
   clearText: { fontSize: 13, fontWeight: FONTS.semibold, color: COLORS.primarySoft },
 
