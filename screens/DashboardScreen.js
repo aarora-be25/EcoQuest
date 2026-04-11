@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: COLORS.bgPage },
 
   header: { backgroundColor: COLORS.primary, padding: SPACING.base, paddingBottom: SPACING.lg },
-  headerTop: { paddingTop: SPACING.xxl, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: SPACING.md },
+  headerTop: { paddingTop: SPACING.lg, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: SPACING.md },
   userRow: { flexDirection: 'row', alignItems: 'center', gap: SPACING.sm },
   avatar: {
     width: 44, height: 44, borderRadius: 22,
