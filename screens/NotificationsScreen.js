@@ -72,7 +72,7 @@ export default function NotificationsScreen({ navigate }) {
 const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: COLORS.bgPage },
   
-  backBtn: { padding: SPACING.base, paddingBottom: 0 },
+  backBtn: { padding: SPACING.base, paddingBottom: SPACING.base },
   backText: { paddingTop: SPACING.md, fontSize: 14, fontWeight: FONTS.semibold, color: COLORS.primary },
   
   header: {
