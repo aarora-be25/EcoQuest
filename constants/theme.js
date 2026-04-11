@@ -2,15 +2,15 @@
 // Import this in every screen: import { COLORS, FONTS, SPACING, RADIUS } from '../constants/theme';
 
 export const COLORS = {
-  primary:       '#1D9E75',
-  primaryLight:  '#E1F5EE',
-  primarySoft:   '#9FE1CB',
-  primaryDark:   '#085041',
-  primaryMid:    '#0F6E56',
+  primary:       /*'#1D9E75'*/'#39948e',
+  primaryLight:  /*'#E1F5EE'*/'#95e266',
+  primarySoft:   /*'#9FE1CB'*/'#87dcc1',
+  primaryDark:   /*'#085041'*/'#27865b',
+  primaryMid:    /*'#0F6E56'*/'#7ac370',
 
-  accent:        '#EF9F27',
-  accentLight:   '#FAEEDA',
-  accentDark:    '#633806',
+  accent:        /*'#EF9F27'*/'#f6c76c',
+  accentLight:   /*'#FAEEDA'*/'#fef2a7',
+  accentDark:    /*'#633806'*/'#c48723',
 
   danger:        '#D85A30',
   dangerLight:   '#FAECE7',
@@ -20,9 +20,9 @@ export const COLORS = {
   bgPage:        '#F0F5F2',
   bgCard:        '#FFFFFF',
 
-  textPrimary:   '#0d2b1f',
-  textSecondary: '#3d5a4e',
-  textMuted:     '#7a9a8e',
+  textPrimary:   /*'#0d2b1f'*/'#125a82',
+  textSecondary: /*'#3d5a4e'*/'#c6ecfb',
+  textMuted:     /*'#7a9a8e'*/'#d1e7f0',
 
   border:        '#DCE8E3',
   borderMid:     '#C5D8CF',
