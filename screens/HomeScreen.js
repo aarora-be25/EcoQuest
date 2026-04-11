@@ -5,6 +5,7 @@ import {
 } from 'react-native';
 import { COLORS, FONTS, SPACING, RADIUS } from '../constants/theme';
 import { Image } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const { width } = Dimensions.get('window');
 
@@ -21,13 +22,16 @@ export default function HomeScreen({ navigate }) {
       <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
 
         {/* Hero */}
-        <View style={styles.hero}>
+        <LinearGradient
+  colors={['#E8F5E9', '#C8E6C9', '#A5D6A7']}
+  style={styles.hero}
+>
           <View style={styles.logoCircle}>
             <Image 
       source={require('../assets/icon.png')} 
       style={styles.logoImage}
     />
-          </View>
+          </LinearGradient>
           <Text style={styles.appName}>EcoQuest</Text>
           <Text style={styles.tagline}>Earn points. Save the planet.</Text>
           <Text style={styles.subtitle}>
@@ -88,7 +92,6 @@ const styles = StyleSheet.create({
     paddingTop: SPACING.xxl + SPACING.md,
     paddingBottom: SPACING.xl,
     paddingHorizontal: SPACING.xl,
-    backgroundColor: COLORS.primary,
   },
   logoCircle: {
     width: 80,
@@ -104,6 +107,18 @@ const styles = StyleSheet.create({
   width: 50,
   height: 50,
   resizeMode: 'contain',
+},
+  logoContainer: {
+  width: 110,
+  height: 110,
+  borderRadius: 55,
+  backgroundColor: 'rgba(255,255,255,0.9)',
+
+  shadowColor: '#000',
+  shadowOpacity: 0.15,
+  shadowRadius: 15,
+  shadowOffset: { width: 0, height: 8 },
+  elevation: 8,
 },
   appName: {
     fontSize: 34,
