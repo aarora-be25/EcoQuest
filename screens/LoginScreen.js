@@ -9,6 +9,7 @@ import { COLORS, FONTS, SPACING, RADIUS } from '../constants/theme';
 export default function LoginScreen({ navigate }) {
   const [mode, setMode]         = useState('login'); // 'login' | 'signup'
   const [studentId, setStudentId] = useState('');
+  const [rollNo, setRollNo] = useState('');
   const [password, setPassword]   = useState('');
   const [name, setName]           = useState('');
   const [branch, setBranch]       = useState('');
@@ -106,7 +107,7 @@ export default function LoginScreen({ navigate }) {
               style={styles.input}
               placeholder="e.g. 1025045283"
               placeholderTextColor={COLORS.textMuted}
-              value={RollNo}
+              value={rollNo}
               onChangeText={setRollNo}
               keyboardType="number"
               autoCapitalize="none"
