@@ -4,6 +4,7 @@ import {
   StyleSheet, SafeAreaView, Dimensions,
 } from 'react-native';
 import { COLORS, FONTS, SPACING, RADIUS } from '../constants/theme';
+import { Image } from 'react-native';
 
 const { width } = Dimensions.get('window');
 
@@ -22,7 +23,10 @@ export default function HomeScreen({ navigate }) {
         {/* Hero */}
         <View style={styles.hero}>
           <View style={styles.logoCircle}>
-            <Text style={styles.logoEmoji}>🌱</Text>
+            <Image 
+      source={require('./assets/icon.png')} 
+      style={styles.logoImage}
+    />
           </View>
           <Text style={styles.appName}>EcoQuest</Text>
           <Text style={styles.tagline}>Earn points. Save the planet.</Text>
@@ -95,7 +99,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginBottom: SPACING.md,
   },
-  logoEmoji: { fontSize: 40 },
+  
+  logoImage: {
+  width: 50,
+  height: 50,
+  resizeMode: 'contain',
+}
   appName: {
     fontSize: 34,
     fontWeight: FONTS.heavy,
