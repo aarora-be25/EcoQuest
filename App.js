@@ -19,6 +19,10 @@ setTimeout(() => {
   SplashScreen.hideAsync();
 }, 3000); // 3 seconds — change to whatever you want
 
+import * as NavigationBar from 'expo-navigation-bar';
+
+NavigationBar.hideAsync();
+
 export default function App() {
   const [screen, setScreen]       = useState('home');
   const [screenParams, setParams] = useState({});
