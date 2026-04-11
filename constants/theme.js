@@ -16,9 +16,9 @@ export const COLORS = {
   dangerLight:   '#FAECE7',
   dangerDark:    '#712B13',
 
-  white:         /*'#FFFFFF'*/'#0a0a0a',
-  bgPage:        /*'#F0F5F2'*/'#809187',
-  bgCard:        /*'#FFFFFF'*/'#424242',
+  white:         '#FFFFFF',
+  bgPage:        '#F0F5F2',
+  bgCard:        '#FFFFFF',
 
   textPrimary:   /*'#0d2b1f'*/'#27865b',
   textSecondary: /*'#3d5a4e'*/'#95e266',
@@ -26,6 +26,14 @@ export const COLORS = {
 
   border:        '#DCE8E3',
   borderMid:     '#C5D8CF',
+};
+
+export const FONTS = {
+  regular:  '400',
+  medium:   '500',
+  semibold: '600',
+  bold:     '700',
+  heavy:    '800',
 };
 
 export const FONTS = {
