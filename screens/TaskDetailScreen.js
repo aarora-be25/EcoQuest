@@ -41,7 +41,6 @@ export default function TaskDetailScreen({ navigate, task, onComplete }) {
       ]);
     }, 300);
   };
-
   return (
     <SafeAreaView style={styles.safe}>
       <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
