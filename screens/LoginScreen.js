@@ -137,6 +137,8 @@ export default function LoginScreen({ navigate }) {
               placeholderTextColor={COLORS.textMuted}
               value={password}
               onChangeText={setPassword}
+              autoCapitalize="none"
+              autoCorrect={false}
               secureTextEntry
             />
 
