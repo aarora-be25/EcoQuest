@@ -12,7 +12,7 @@ const FEATURES = [
   { icon: '✅', title: 'Complete eco tasks', desc: 'Log daily sustainable actions — waste sorting, cycling, planting, and more.' },
   { icon: '📷', title: 'Photo verification', desc: 'Each task requires a photo proof to earn points. No cheating allowed.' },
   { icon: '🏆', title: 'Branch leaderboard', desc: 'Compete within your branch or across all first-years. Climb the ranks.' },
-  { icon: '⚡', title: 'Earn & lose points', desc: 'Verified cheating deducts your points. Keep it real, keep it green.' },
+  { icon: '⚡', title: 'Earn & lose points', desc: 'Verified cheating deducts your points. Be real; keep it clean, keep it green.' },
 ];
 
 export default function HomeScreen({ navigate }) {
@@ -24,7 +24,7 @@ export default function HomeScreen({ navigate }) {
         <View style={styles.hero}>
           <View style={styles.logoCircle}>
             <Image 
-      source={require('./assets/icon.png')} 
+      source={require('../assets/icon.png')} 
       style={styles.logoImage}
     />
           </View>
@@ -72,7 +72,7 @@ export default function HomeScreen({ navigate }) {
           </TouchableOpacity>
         </View>
 
-        <Text style={styles.footer}>TIET UEN008 · 2024–25</Text>
+        <Text style={styles.footer}>TIET UEN008 · 2026</Text>
         <View style={{ height: SPACING.xxl }} />
       </ScrollView>
     </SafeAreaView>
