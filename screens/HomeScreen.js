@@ -23,7 +23,7 @@ export default function HomeScreen({ navigate }) {
 
         {/* Hero */}
         <LinearGradient
-  colors={[COLORS.primaryDark, COLORS.primarySoft, COLORS.primaryLight]}
+  colors={[COLORS.primaryLight, COLORS.primaryDark]}
   style={styles.hero}
 >
           <View style={styles.logoCircle}>
@@ -108,18 +108,6 @@ const styles = StyleSheet.create({
   width: 50,
   height: 50,
   resizeMode: 'contain',
-},
-  logoContainer: {
-  width: 110,
-  height: 110,
-  borderRadius: 55,
-  backgroundColor: 'rgba(255,255,255,0.9)',
-
-  shadowColor: '#000',
-  shadowOpacity: 0.15,
-  shadowRadius: 10,
-  shadowOffset: { width: 0, height: 8 },
-  elevation: 8,
 },
   appName: {
     fontSize: 34,
