@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     padding: SPACING.base,
     paddingTop: SPACING.md,
   },
-  backText: { fontSize: 14, fontWeight: FONTS.semibold, color: COLORS.white },
+  backText: { paddingTop: SPACING.xxl + SPACING.md, fontSize: 14, fontWeight: FONTS.semibold, color: COLORS.white },
   headerTitle: { fontSize: 17, fontWeight: FONTS.heavy, color: COLORS.white },
 
   myRankBanner: {
