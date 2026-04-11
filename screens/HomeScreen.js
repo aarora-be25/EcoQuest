@@ -74,7 +74,7 @@ export default function HomeScreen({ navigate }) {
           </TouchableOpacity>
         </View>
 
-        <Text style={styles.footer}>TIET UEN008 · 2026</Text>
+        <Text style={styles.footer}>TIET, Patiala · UEN008 · 2026</Text>
         <View style={{ height: SPACING.xxl }} />
       </ScrollView>
     </SafeAreaView>
