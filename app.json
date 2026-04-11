@@ -7,8 +7,7 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "backgroundColor": "#1D9E75",
-      "resizeMode": "contain"
+      "backgroundColor": "#1D9E75"
     },
     "ios": {
       "supportsTablet": false,
@@ -16,8 +15,6 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "monochromeImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#1D9E75"
       },
       "package": "edu.tiet.ecoquest"
