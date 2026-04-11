@@ -11,6 +11,14 @@ import LeaderboardScreen   from './screens/LeaderboardScreen';
 import ProfileScreen       from './screens/ProfileScreen';
 import NotificationsScreen from './screens/NotificationsScreen';
 
+import * as SplashScreen from 'expo-splash-screen';
+
+SplashScreen.preventAutoHideAsync();
+
+setTimeout(() => {
+  SplashScreen.hideAsync();
+}, 3000); // 3 seconds — change to whatever you want
+
 export default function App() {
   const [screen, setScreen]       = useState('home');
   const [screenParams, setParams] = useState({});
