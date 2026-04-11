@@ -31,14 +31,15 @@ export default function HomeScreen({ navigate }) {
       source={require('../assets/icon.png')} 
       style={styles.logoImage}
     />
-          </LinearGradient>
+      </View>
+          
           <Text style={styles.appName}>EcoQuest</Text>
           <Text style={styles.tagline}>Earn points. Save the planet.</Text>
           <Text style={styles.subtitle}>
             A sustainability challenge for TIET students.{'\n'}
             Log eco-friendly actions, earn points, compete with your branch.
           </Text>
-        </View>
+        </LinearGradient>
 
         {/* Features */}
         <View style={styles.section}>
