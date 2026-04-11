@@ -52,8 +52,8 @@ export default function LoginScreen({ navigate }) {
             </Text>
             <Text style={styles.subtitle}>
               {mode === 'login'
-                ? 'Sign in with your official TIET student ID'
-                : 'Create your account using your official TIET student ID'}
+                ? 'Sign in with your official Thapar student email ID'
+                : 'Create your account using your official Thapar student email ID'}
             </Text>
           </View>
 
@@ -89,14 +89,26 @@ export default function LoginScreen({ navigate }) {
               </>
             )}
 
-            <Text style={styles.label}>Student ID</Text>
+            <Text style={styles.label}>Student Email ID</Text>
             <TextInput
               style={styles.input}
-              placeholder="e.g. 22cse001@tiet.edu"
+              placeholder="e.g. akumar4_be25@thapar.edu"
               placeholderTextColor={COLORS.textMuted}
               value={studentId}
               onChangeText={setStudentId}
               keyboardType="email-address"
+              autoCapitalize="none"
+              autoCorrect={false}
+            />
+                
+            <Text style={styles.label}>Roll No.</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="e.g. 1025045283"
+              placeholderTextColor={COLORS.textMuted}
+              value={RollNo}
+              onChangeText={setRollNo}
+              keyboardType="number"
               autoCapitalize="none"
               autoCorrect={false}
             />
@@ -106,7 +118,7 @@ export default function LoginScreen({ navigate }) {
                 <Text style={styles.label}>Branch</Text>
                 <TextInput
                   style={styles.input}
-                  placeholder="e.g. CSE, ECE, ME"
+                  placeholder="e.g. COE, ECE, ME"
                   placeholderTextColor={COLORS.textMuted}
                   value={branch}
                   onChangeText={setBranch}
@@ -118,7 +130,7 @@ export default function LoginScreen({ navigate }) {
             <Text style={styles.label}>Password</Text>
             <TextInput
               style={styles.input}
-              placeholder="Your password"
+              placeholder="Password"
               placeholderTextColor={COLORS.textMuted}
               value={password}
               onChangeText={setPassword}
@@ -144,7 +156,7 @@ export default function LoginScreen({ navigate }) {
 
             <View style={styles.noteBox}>
               <Text style={styles.noteText}>
-                🔒 Only official TIET student IDs (@tiet.edu) are accepted.
+                🔒 Only official Thapar student Email IDs (@thapar.edu) are accepted.
                 Your account is linked to your roll number.
               </Text>
             </View>
