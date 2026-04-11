@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
     backgroundColor: COLORS.primary,
     padding: SPACING.base,
-    paddingTop: SPACING.md,
+    paddingTop: SPACING.xxl + SPACING.md,
   },
   headerTitle: { fontSize: 17, fontWeight: FONTS.heavy, color: COLORS.white },
 
@@ -154,6 +154,7 @@ const styles = StyleSheet.create({
   tabRow: {
     flexDirection: 'row',
     backgroundColor: COLORS.primary,
+    paddingTop: SPACING.sm,
     paddingHorizontal: SPACING.base,
     paddingBottom: SPACING.sm,
     gap: SPACING.sm,
