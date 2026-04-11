@@ -3,9 +3,9 @@
 
 export const COLORS = {
   primary:       /*'#1D9E75'*/'#39948e',
-  primaryLight:  /*'#E1F5EE'*/'#95e266',
+  primaryLight:  /*'#E1F5EE'*/'#c6ecfb',
   primarySoft:   /*'#9FE1CB'*/'#87dcc1',
-  primaryDark:   /*'#085041'*/'#27865b',
+  primaryDark:   /*'#085041'*/'#125a82',
   primaryMid:    /*'#0F6E56'*/'#7ac370',
 
   accent:        /*'#EF9F27'*/'#f6c76c',
@@ -20,8 +20,8 @@ export const COLORS = {
   bgPage:        '#F0F5F2',
   bgCard:        '#FFFFFF',
 
-  textPrimary:   /*'#0d2b1f'*/'#125a82',
-  textSecondary: /*'#3d5a4e'*/'#c6ecfb',
+  textPrimary:   /*'#0d2b1f'*/'#27865b',
+  textSecondary: /*'#3d5a4e'*/'#95e266',
   textMuted:     /*'#7a9a8e'*/'#d1e7f0',
 
   border:        '#DCE8E3',
