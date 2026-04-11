@@ -36,14 +36,6 @@ export const FONTS = {
   heavy:    '800',
 };
 
-export const FONTS = {
-  regular:  '400',
-  medium:   '500',
-  semibold: '600',
-  bold:     '700',
-  heavy:    '800',
-};
-
 export const SPACING = {
   xs:   4,
   sm:   8,
