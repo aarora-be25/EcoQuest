@@ -20,7 +20,7 @@ export const COLORS = {
   bgPage:        '#F0F5F2',
   bgCard:        '#FFFFFF',
 
-  textMuted:   /*'#0d2b1f'*/'#27865b',
+  textMuted:   /*'#0d2b1f'*/'#4ec28d',
   textSecondary: /*'#3d5a4e'*/'#95e266',
   textPrimary:     /*'#7a9a8e'*/'#3fa9d4',
 
