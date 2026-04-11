@@ -26,12 +26,12 @@ export default function HomeScreen({ navigate }) {
   colors={[COLORS.primarySoft, COLORS.primaryDark]}
   style={styles.hero}
 >
-          <View style={styles.logoCircle}>
+          
             <Image 
       source={require('../assets/icon.png')} 
       style={styles.logoImage}
     />
-      </View>
+      
           
           <Text style={styles.appName}>EcoQuest</Text>
           <Text style={styles.tagline}>Earn points. Save the planet.</Text>
@@ -91,15 +91,7 @@ const styles = StyleSheet.create({
     paddingBottom: SPACING.xl,
     paddingHorizontal: SPACING.xl,
   },
-  logoCircle: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
-    backgroundColor: COLORS.primaryLight,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: SPACING.md,
-  },
+  
   
   logoImage: {
   width: 50,
