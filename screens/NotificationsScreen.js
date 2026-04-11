@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
 
   header: {
     flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
-    backgroundColor: COLORS.primary, padding: SPACING.base,
+    backgroundColor: COLORS.primary, padding: SPACING.base, paddingTop: SPACING.md,
   },
   headerTitle: { fontSize: 17, fontWeight: FONTS.heavy, color: COLORS.white },
   clearText: { fontSize: 13, fontWeight: FONTS.semibold, color: COLORS.primarySoft },
