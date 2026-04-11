@@ -23,7 +23,7 @@ export default function HomeScreen({ navigate }) {
 
         {/* Hero */}
         <LinearGradient
-  colors={[COLORS.primarySoft, '#C8E6C9', '#E8F5E9']}
+  colors={[COLORS.primaryDark, COLORS.primarySoft, COLORS.primaryLight]}
   style={styles.hero}
 >
           <View style={styles.logoCircle}>
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
 
   shadowColor: '#000',
   shadowOpacity: 0.15,
-  shadowRadius: 15,
+  shadowRadius: 10,
   shadowOffset: { width: 0, height: 8 },
   elevation: 8,
 },
