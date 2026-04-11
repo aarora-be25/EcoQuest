@@ -22,7 +22,7 @@ export const COLORS = {
 
   textMuted:   /*'#0d2b1f'*/'#27865b',
   textSecondary: /*'#3d5a4e'*/'#95e266',
-  textPrimary:     /*'#7a9a8e'*/'#d1e7f0',
+  textPrimary:     /*'#7a9a8e'*/'#3fa9d4',
 
   border:        '#DCE8E3',
   borderMid:     '#C5D8CF',
