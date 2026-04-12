@@ -1,6 +1,6 @@
 // EcoQuest — Design Tokens
 // Import this in every screen: import { COLORS, FONTS, SPACING, RADIUS } from '../constants/theme';
-
+/*
 export const COLORS = {
   primary:       '#39948e',
   primaryLight:  '#c6ecfb',
@@ -22,7 +22,40 @@ export const COLORS = {
   border:        '#DCE8E3',
   borderMid:     '#C5D8CF',
 };
+*/
+  // 🌊 Primary (Teal ecosystem)
+  primary:       '#2F9E9A',   // main teal
+  primaryDark:   '#1F6F6C',
+  primaryLight:  '#D6F3F1',
+  primarySoft:   '#AEE6E2',
 
+  // ✨ Accent (points / rewards)
+  accent:        '#F6C76C',
+  accentLight:   '#FFF4D6',
+  accentDark:    '#C48723',
+
+  // ❌ Status
+  danger:        '#D85A30',
+  dangerLight:   '#FAECE7',
+  dangerDark:    '#712B13',
+
+  // 🧱 Backgrounds
+  bgPage:        '#F2F7F6',
+  bgCard:        '#FFFFFF',
+
+  // 📝 Text
+  textPrimary:   '#0F2A2A',   // deep teal-black
+  textSecondary: '#3F5F5E',
+  textMuted:     '#7A9A98',
+
+  // 🔲 Borders
+  border:        '#DCE8E6',
+  borderMid:    '#EDF3F2',
+
+  // ⚪ Base
+  white:         '#FFFFFF',
+  black:         '#000000',
+};
 export const FONTS = {
   regular:  '400',
   medium:   '500',
