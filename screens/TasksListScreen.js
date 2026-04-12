@@ -87,10 +87,10 @@ const styles = StyleSheet.create({
   countLabel: { fontSize: 11, color: COLORS.textMuted, marginBottom: SPACING.sm },
 });
 */
-import React, { useState } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import {
   View, Text, ScrollView, TouchableOpacity,
-  StyleSheet, SafeAreaView,
+  StyleSheet, SafeAreaView, RefreshControl, Animated,
 } from 'react-native';
 import { COLORS, FONTS, SPACING, RADIUS } from '../constants/theme';
 import { TASKS } from '../constants/data';
@@ -102,6 +102,10 @@ const CATEGORIES = ['All', 'Waste', 'Transport', 'Energy', 'Water', 'Nature'];
 export default function TasksListScreen({ navigation }) {
   const [tasks, setTasks]   = useState(TASKS);
   const [filter, setFilter] = useState('All');
+  const [refreshing, setRefreshing] = useState(false);
+
+  // 🔥 animation value
+  const fadeAnim = useRef(new Animated.Value(0)).current;
 
   const filtered = filter === 'All'
     ? tasks
@@ -118,7 +122,6 @@ export default function TasksListScreen({ navigation }) {
     });
   };
 
-  // 🔥 keep list updated after completing task
   const handleComplete = (taskId) => {
     setTasks(prev =>
       prev.map(t =>
@@ -126,6 +129,35 @@ export default function TasksListScreen({ navigation }) {
       )
     );
   };
+
+  // 🔄 Pull to refresh
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+
+    setTimeout(() => {
+      // simulate refresh (later: fetch from backend)
+      setTasks([...TASKS]);
+      setRefreshing(false);
+
+      // animate again on refresh
+      runAnimation();
+    }, 1000);
+  }, []);
+
+  // ✨ animation function
+  const runAnimation = () => {
+    fadeAnim.setValue(0);
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 500,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  // run animation on first load
+  React.useEffect(() => {
+    runAnimation();
+  }, []);
 
   return (
     <SafeAreaView style={styles.safe}>
@@ -162,8 +194,17 @@ export default function TasksListScreen({ navigation }) {
         ))}
       </ScrollView>
 
-      {/* Body */}
-      <ScrollView style={styles.body} showsVerticalScrollIndicator={false}>
+      {/* Body with animation + refresh */}
+      <Animated.ScrollView
+        style={[styles.body, { opacity: fadeAnim }]}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+          />
+        }
+        showsVerticalScrollIndicator={false}
+      >
         <Text style={styles.countLabel}>
           {filtered.length} tasks
         </Text>
@@ -177,9 +218,8 @@ export default function TasksListScreen({ navigation }) {
         ))}
 
         <View style={{ height: SPACING.xxl * 2 }} />
-      </ScrollView>
+      </Animated.ScrollView>
 
-      {/* Bottom nav */}
       <BottomNav active="tasksList" navigation={navigation} />
     </SafeAreaView>
   );
