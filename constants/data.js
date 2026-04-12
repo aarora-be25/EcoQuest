@@ -98,14 +98,14 @@ export const TASKS = [
 ];
 
 export const BRANCH_LEADERBOARD = [
-  { id:'u010', initials:'PS', name:'Priya S.',   pts:480, year:'3', bg:'#FAEEDA', fg:'#633806' },
-  { id:'u011', initials:'RM', name:'Rohan M.',   pts:410, year:'4', bg:'#E1F5EE', fg:'#085041' },
-  { id:'u001', initials:'AK', name:'Arjun K.',   pts:320, year:'1', bg:'#9FE1CB', fg:'#085041', you:true },
-  { id:'u012', initials:'ST', name:'Simran T.',  pts:290, year:'4', bg:'#FAEEDA', fg:'#633806' },
-  { id:'u013', initials:'VK', name:'Varun K.',   pts:245, year:'2', bg:'#E6F1FB', fg:'#0C447C' },
-  { id:'u014', initials:'NR', name:'Nisha R.',   pts:210, year:'3', bg:'#E1F5EE', fg:'#085041' },
-  { id:'u015', initials:'AM', name:'Aditya M.',  pts:190, year:'1', bg:'#FAEEDA', fg:'#633806' },
-  { id:'u016', initials:'DG', name:'Dev G.',     pts:175, year:'1', bg:'#E6F1FB', fg:'#0C447C' },
+  { id:'u010', initials:'PS', name:'Priya S.',   pts:480, branch:'3', bg:'#FAEEDA', fg:'#633806' },
+  { id:'u011', initials:'RM', name:'Rohan M.',   pts:410, branch:'4', bg:'#E1F5EE', fg:'#085041' },
+  { id:'u001', initials:'AK', name:'Arjun K.',   pts:320, branch:'1', bg:'#9FE1CB', fg:'#085041', you:true },
+  { id:'u012', initials:'ST', name:'Simran T.',  pts:290, branch:'4', bg:'#FAEEDA', fg:'#633806' },
+  { id:'u013', initials:'VK', name:'Varun K.',   pts:245, branch:'2', bg:'#E6F1FB', fg:'#0C447C' },
+  { id:'u014', initials:'NR', name:'Nisha R.',   pts:210, branch:'3', bg:'#E1F5EE', fg:'#085041' },
+  { id:'u015', initials:'AM', name:'Aditya M.',  pts:190, branch:'1', bg:'#FAEEDA', fg:'#633806' },
+  { id:'u016', initials:'DG', name:'Dev G.',     pts:175, branch:'1', bg:'#E6F1FB', fg:'#0C447C' },
 ];
 
 export const YEAR_LEADERBOARD = [
