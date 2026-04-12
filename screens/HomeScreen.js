@@ -230,7 +230,8 @@ const FEATURES = [
   { icon: '✅', title: 'Complete eco tasks', desc: 'Log daily sustainable actions — waste sorting, cycling, planting, and more.' },
   { icon: '📷', title: 'Photo verification', desc: 'Each task requires a photo proof to earn points. No cheating allowed.' },
   { icon: '🏆', title: 'Branch leaderboard', desc: 'Compete within your branch or across all first-years. Climb the ranks.' },
-  { icon: '⚡', title: 'Earn & lose points', desc: 'Verified cheating deducts your points. Be real; keep it clean, keep it green.' },
+  { icon: '⚡', title: 'Earn & lose points', desc: 'Verified- cheating deducts your points. Be real; keep it clean, keep it green.' },
+  { icon: '8️⃣', title: '8 Eco tasks', desc: 'Currently, 8 eco tasks available. List available on tasks page after login.' },
 ];
 
 export default function HomeScreen({ navigation }) {
@@ -283,7 +284,7 @@ export default function HomeScreen({ navigation }) {
 
         {/* Stats */}
         <View style={styles.statsStrip}>
-          {[['8', 'Eco tasks'], ['Developed by 1st year students', 'Course Code UEN008']].map(([num, lbl], i) => (
+          {[['1st year; UEN008', 'Still under construction']].map(([num, lbl], i) => (
             <View key={i} style={styles.statItem}>
               <Text style={styles.statNum}>{num}</Text>
               <Text style={styles.statLbl}>{lbl}</Text>
