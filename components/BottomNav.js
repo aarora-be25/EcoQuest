@@ -72,7 +72,6 @@ const styles = StyleSheet.create({
   },
 });
 */
-
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -85,8 +84,15 @@ const TABS = [
   { key: 'profile', label: 'Profile', icon: '👤' },
 ];
 
-export default function BottomNav({ active, navigate }) {
+export default function BottomNav({ active, navigation }) {
   const insets = useSafeAreaInsets();
+
+  const handlePress = (key) => {
+    if (!navigation) return;
+    if (key !== active) {
+      navigation.navigate(key);
+    }
+  };
 
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
@@ -97,7 +103,7 @@ export default function BottomNav({ active, navigate }) {
           <TouchableOpacity
             key={tab.key}
             style={styles.tab}
-            onPress={() => navigate(tab.key)}
+            onPress={() => handlePress(tab.key)}
             activeOpacity={0.8}
           >
             {isActive && <View style={styles.activeDot} />}
