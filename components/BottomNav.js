@@ -42,7 +42,7 @@ export default function BottomNav({ active, navigation }) {
 const styles = StyleSheet.create({
   nav: {
     flexDirection: 'row',
-    backgroundColor: COLORS.white,
+    backgroundColor: COLORS.primarySoft,
     borderTopWidth: 1,
     borderTopColor: COLORS.border,
     paddingTop: SPACING.sm,
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     width: 4,
     height: 4,
     borderRadius: 2,
-    backgroundColor: COLORS.primary,
+    backgroundColor: COLORS.primaryDark,
     marginTop: 2,
   },
 });
