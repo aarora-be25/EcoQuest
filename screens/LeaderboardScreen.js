@@ -354,6 +354,7 @@ export default function LeaderboardScreen({ navigation }) {
 
     </SafeAreaView>
   );
+}
 const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: COLORS.bgPage },
 
