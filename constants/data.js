@@ -5,8 +5,8 @@ export const CURRENT_USER = {
   id:       'u001',
   name:     'Arjun Kumar',
   initials: 'AK',
-  email:    '22cse001@tiet.edu',
-  branch:   'CSE',
+  email:    'akumar4_be25@thapar.edu',
+  branch:   'COE',
   year:     '1st',
   section:  'A',
   pts:      320,
@@ -98,24 +98,24 @@ export const TASKS = [
 ];
 
 export const BRANCH_LEADERBOARD = [
-  { id:'u010', initials:'PS', name:'Priya S.',   pts:480, branch:'CSE', bg:'#FAEEDA', fg:'#633806' },
-  { id:'u011', initials:'RM', name:'Rohan M.',   pts:410, branch:'CSE', bg:'#E1F5EE', fg:'#085041' },
-  { id:'u001', initials:'AK', name:'Arjun K.',   pts:320, branch:'CSE', bg:'#9FE1CB', fg:'#085041', you:true },
-  { id:'u012', initials:'ST', name:'Simran T.',  pts:290, branch:'CSE', bg:'#FAEEDA', fg:'#633806' },
-  { id:'u013', initials:'VK', name:'Varun K.',   pts:245, branch:'CSE', bg:'#E6F1FB', fg:'#0C447C' },
-  { id:'u014', initials:'NR', name:'Nisha R.',   pts:210, branch:'CSE', bg:'#E1F5EE', fg:'#085041' },
-  { id:'u015', initials:'AM', name:'Aditya M.',  pts:190, branch:'CSE', bg:'#FAEEDA', fg:'#633806' },
-  { id:'u016', initials:'DG', name:'Dev G.',     pts:175, branch:'CSE', bg:'#E6F1FB', fg:'#0C447C' },
+  { id:'u010', initials:'PS', name:'Priya S.',   pts:480, year:'3', bg:'#FAEEDA', fg:'#633806' },
+  { id:'u011', initials:'RM', name:'Rohan M.',   pts:410, year:'4', bg:'#E1F5EE', fg:'#085041' },
+  { id:'u001', initials:'AK', name:'Arjun K.',   pts:320, year:'1', bg:'#9FE1CB', fg:'#085041', you:true },
+  { id:'u012', initials:'ST', name:'Simran T.',  pts:290, year:'4', bg:'#FAEEDA', fg:'#633806' },
+  { id:'u013', initials:'VK', name:'Varun K.',   pts:245, year:'2', bg:'#E6F1FB', fg:'#0C447C' },
+  { id:'u014', initials:'NR', name:'Nisha R.',   pts:210, year:'3', bg:'#E1F5EE', fg:'#085041' },
+  { id:'u015', initials:'AM', name:'Aditya M.',  pts:190, year:'1', bg:'#FAEEDA', fg:'#633806' },
+  { id:'u016', initials:'DG', name:'Dev G.',     pts:175, year:'1', bg:'#E6F1FB', fg:'#0C447C' },
 ];
 
 export const YEAR_LEADERBOARD = [
   { id:'u020', initials:'KL', name:'Kavya L.',   pts:510, branch:'ECE', bg:'#E1F5EE', fg:'#085041' },
-  { id:'u010', initials:'PS', name:'Priya S.',   pts:480, branch:'CSE', bg:'#FAEEDA', fg:'#633806' },
+  { id:'u010', initials:'PS', name:'Priya S.',   pts:480, branch:'COE', bg:'#FAEEDA', fg:'#633806' },
   { id:'u021', initials:'JM', name:'Jay M.',     pts:370, branch:'ME',  bg:'#E6F1FB', fg:'#0C447C' },
-  { id:'u001', initials:'AK', name:'Arjun K.',   pts:320, branch:'CSE', bg:'#9FE1CB', fg:'#085041', you:true },
-  { id:'u012', initials:'ST', name:'Simran T.',  pts:290, branch:'CSE', bg:'#FAEEDA', fg:'#633806' },
+  { id:'u001', initials:'AK', name:'Arjun K.',   pts:320, branch:'COE', bg:'#9FE1CB', fg:'#085041', you:true },
+  { id:'u012', initials:'ST', name:'Simran T.',  pts:290, branch:'RAI', bg:'#FAEEDA', fg:'#633806' },
   { id:'u022', initials:'DP', name:'Dev P.',     pts:260, branch:'EEE', bg:'#E1F5EE', fg:'#085041' },
-  { id:'u023', initials:'LN', name:'Lara N.',    pts:230, branch:'IT',  bg:'#FAEEDA', fg:'#633806' },
+  { id:'u023', initials:'LN', name:'Lara N.',    pts:230, branch:'DSAI',  bg:'#FAEEDA', fg:'#633806' },
   { id:'u024', initials:'RV', name:'Ravi V.',    pts:205, branch:'ME',  bg:'#E6F1FB', fg:'#0C447C' },
 ];
 
