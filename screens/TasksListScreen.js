@@ -87,10 +87,10 @@ const styles = StyleSheet.create({
   countLabel: { fontSize: 11, color: COLORS.textMuted, marginBottom: SPACING.sm },
 });
 */
-import React, { useState, useCallback, useRef } from 'react';
+import React, { useState } from 'react';
 import {
   View, Text, ScrollView, TouchableOpacity,
-  StyleSheet, SafeAreaView, RefreshControl, Animated,
+  StyleSheet, SafeAreaView,
 } from 'react-native';
 import { COLORS, FONTS, SPACING, RADIUS } from '../constants/theme';
 import { TASKS } from '../constants/data';
@@ -102,10 +102,6 @@ const CATEGORIES = ['All', 'Waste', 'Transport', 'Energy', 'Water', 'Nature'];
 export default function TasksListScreen({ navigation }) {
   const [tasks, setTasks]   = useState(TASKS);
   const [filter, setFilter] = useState('All');
-  const [refreshing, setRefreshing] = useState(false);
-
-  // 🔥 animation value
-  const fadeAnim = useRef(new Animated.Value(0)).current;
 
   const filtered = filter === 'All'
     ? tasks
@@ -118,46 +114,15 @@ export default function TasksListScreen({ navigation }) {
 
     navigation.navigate('taskDetail', {
       task,
-      onComplete: handleComplete,
+      onComplete: (taskId, ptsEarned) => {
+        setTasks(prev =>
+          prev.map(t =>
+            t.id === taskId ? { ...t, done: true } : t
+          )
+        );
+      },
     });
   };
-
-  const handleComplete = (taskId) => {
-    setTasks(prev =>
-      prev.map(t =>
-        t.id === taskId ? { ...t, done: true } : t
-      )
-    );
-  };
-
-  // 🔄 Pull to refresh
-  const onRefresh = useCallback(() => {
-    setRefreshing(true);
-
-    setTimeout(() => {
-      // simulate refresh (later: fetch from backend)
-      setTasks([...TASKS]);
-      setRefreshing(false);
-
-      // animate again on refresh
-      runAnimation();
-    }, 1000);
-  }, []);
-
-  // ✨ animation function
-  const runAnimation = () => {
-    fadeAnim.setValue(0);
-    Animated.timing(fadeAnim, {
-      toValue: 1,
-      duration: 500,
-      useNativeDriver: true,
-    }).start();
-  };
-
-  // run animation on first load
-  React.useEffect(() => {
-    runAnimation();
-  }, []);
 
   return (
     <SafeAreaView style={styles.safe}>
@@ -180,45 +145,54 @@ export default function TasksListScreen({ navigation }) {
         {CATEGORIES.map(cat => (
           <TouchableOpacity
             key={cat}
-            style={[styles.chip, filter === cat && styles.chipActive]}
+            style={[
+              styles.chip,
+              filter === cat && styles.chipActive
+            ]}
             onPress={() => setFilter(cat)}
             activeOpacity={0.8}
           >
-            <Text style={[
-              styles.chipText,
-              filter === cat && styles.chipTextActive
-            ]}>
+            <Text
+              style={[
+                styles.chipText,
+                filter === cat && styles.chipTextActive
+              ]}
+            >
               {cat}
             </Text>
           </TouchableOpacity>
         ))}
       </ScrollView>
 
-      {/* Body with animation + refresh */}
-      <Animated.ScrollView
-        style={[styles.body, { opacity: fadeAnim }]}
-        refreshControl={
-          <RefreshControl
-            refreshing={refreshing}
-            onRefresh={onRefresh}
-          />
-        }
+      {/* Tasks list */}
+      <ScrollView
+        style={styles.body}
         showsVerticalScrollIndicator={false}
       >
         <Text style={styles.countLabel}>
-          {filtered.length} tasks
+          {filtered.length} task{filtered.length !== 1 ? 's' : ''}
         </Text>
 
-        {filtered.map(task => (
-          <TaskCard
-            key={task.id}
-            task={task}
-            onPress={handlePress}
-          />
-        ))}
+        {filtered.length === 0 ? (
+          <View style={styles.emptyState}>
+            <Text style={{ fontSize: 40 }}>🌱</Text>
+            <Text style={styles.emptyTitle}>No tasks here</Text>
+            <Text style={styles.emptyDesc}>
+              Try switching category or check back later.
+            </Text>
+          </View>
+        ) : (
+          filtered.map(task => (
+            <TaskCard
+              key={task.id}
+              task={task}
+              onPress={handlePress}
+            />
+          ))
+        )}
 
         <View style={{ height: SPACING.xxl * 2 }} />
-      </Animated.ScrollView>
+      </ScrollView>
 
       <BottomNav active="tasksList" navigation={navigation} />
     </SafeAreaView>
@@ -259,15 +233,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.18)',
   },
   chipActive: { backgroundColor: COLORS.white },
-
   chipText: {
     fontSize: 13,
     fontWeight: FONTS.bold,
     color: 'rgba(255,255,255,0.8)',
   },
-  chipTextActive: {
-    color: COLORS.primary,
-  },
+  chipTextActive: { color: COLORS.primary },
 
   body: {
     flex: 1,
@@ -278,5 +249,21 @@ const styles = StyleSheet.create({
     fontSize: 11,
     color: COLORS.textMuted,
     marginBottom: SPACING.sm,
+  },
+
+  emptyState: {
+    alignItems: 'center',
+    paddingVertical: SPACING.xxl,
+    gap: SPACING.sm,
+  },
+  emptyTitle: {
+    fontSize: 16,
+    fontWeight: FONTS.heavy,
+    color: COLORS.textPrimary,
+  },
+  emptyDesc: {
+    fontSize: 12,
+    color: COLORS.textMuted,
+    textAlign: 'center',
   },
 });
