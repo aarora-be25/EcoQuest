@@ -1,7 +1,8 @@
 // EcoQuest — Design Tokens
 // Import this in every screen: import { COLORS, FONTS, SPACING, RADIUS } from '../constants/theme';
-/*
+
 export const COLORS = {
+  /*
   primary:       '#39948e',
   primaryLight:  '#c6ecfb',
   primarySoft:   '#87dcc1',
