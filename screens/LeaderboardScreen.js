@@ -428,4 +428,3 @@ const styles = StyleSheet.create({
   branch: { fontSize: 10, color: COLORS.textMuted, marginTop: 1 },
   pts: { fontSize: 13, fontWeight: FONTS.heavy, color: COLORS.primary },
 });
-}
