@@ -250,10 +250,10 @@ export default function HomeScreen({ navigation }) {
         >
            <View style={styles.logoCircle}>
             <Image 
-              source={require('../assets/icon.png')} 
-              style={styles.logoImage}
-            />
-            </View>
+      source={require('../assets/icon.png')} 
+      style={styles.logoImage}
+    />
+      </View>
 
           <Text style={styles.appName}>EcoQuest</Text>
           <Text style={styles.tagline}>Earn points. Save the planet.</Text>
@@ -335,7 +335,7 @@ const styles = StyleSheet.create({
   logoImage: {
     width: 150,
     height: 150,
-    resizeMode: 'contain',
+   // resizeMode: 'contain',
 },
   appName: {
     fontSize: 34,
