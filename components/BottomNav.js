@@ -1,4 +1,4 @@
-import React from 'react';
+/*import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { COLORS, FONTS, SPACING } from '../constants/theme';
 
@@ -69,5 +69,90 @@ const styles = StyleSheet.create({
     borderRadius: 2,
     backgroundColor: COLORS.primaryDark,
     marginTop: 2,
+  },
+});
+*/
+
+import React from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { COLORS, FONTS, SPACING } from '../constants/theme';
+
+const TABS = [
+  { key: 'dashboard', label: 'Home', icon: '🏠' },
+  { key: 'tasksList', label: 'Tasks', icon: '📋' },
+  { key: 'leaderboard', label: 'Ranks', icon: '🏆' },
+  { key: 'profile', label: 'Profile', icon: '👤' },
+];
+
+export default function BottomNav({ active, navigation }) {
+  const handlePress = (key) => {
+    navigation.navigate(key);
+  };
+
+  return (
+    <View style={styles.container}>
+      {TABS.map(tab => {
+        const isActive = active === tab.key;
+
+        return (
+          <TouchableOpacity
+            key={tab.key}
+            style={styles.tab}
+            onPress={() => handlePress(tab.key)}
+            activeOpacity={0.8}
+          >
+            <Text style={[
+              styles.icon,
+              isActive && styles.iconActive
+            ]}>
+              {tab.icon}
+            </Text>
+
+            <Text style={[
+              styles.label,
+              isActive && styles.labelActive
+            ]}>
+              {tab.label}
+            </Text>
+          </TouchableOpacity>
+        );
+      })}
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    backgroundColor: COLORS.bgCard,
+    borderTopWidth: 1,
+    borderTopColor: COLORS.border,
+    paddingVertical: SPACING.sm,
+  },
+
+  tab: {
+    flex: 1,
+    alignItems: 'center',
+    gap: 2,
+  },
+
+  icon: {
+    fontSize: 18,
+    color: COLORS.textMuted,
+  },
+
+  iconActive: {
+    color: COLORS.primary,
+  },
+
+  label: {
+    fontSize: 10,
+    color: COLORS.textMuted,
+    fontWeight: FONTS.medium,
+  },
+
+  labelActive: {
+    color: COLORS.primary,
+    fontWeight: FONTS.bold,
   },
 });
