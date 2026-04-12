@@ -244,7 +244,7 @@ export default function LeaderboardScreen({ navigation }) {
 
       {/* Tabs */}
       <View style={styles.tabRow}>
-        {[['branch', 'By branch'], ['year', 'By year']].map(([key, label]) => (
+        {[['branch', 'Yearwise'], ['year', 'Branchwise']].map(([key, label]) => (
           <TouchableOpacity
             key={key}
             style={[styles.tab, tab === key && styles.tabActive]}
