@@ -303,7 +303,7 @@ export default function ProfileScreen({ navigation }) {
               <Text style={styles.tagText}>{CURRENT_USER.branch}</Text>
             </View>
             <View style={styles.tag}>
-              <Text style={styles.tagText}>{CURRENT_USER.year} year</Text>
+              <Text style={styles.tagText}>{CURRENT_USER.year}</Text>
             </View>
             <View style={styles.tag}>
               <Text style={styles.tagText}>Section {CURRENT_USER.section}</Text>
