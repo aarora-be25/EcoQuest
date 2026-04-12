@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+/*import React, { useState } from 'react';
 import {
   View, Text, TextInput, TouchableOpacity,
   StyleSheet, SafeAreaView, ScrollView,
@@ -40,12 +40,12 @@ export default function LoginScreen({ navigate }) {
       >
         <ScrollView style={styles.scroll} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
 
-          {/* Back */}
+          {// Back }
           <TouchableOpacity style={styles.backBtn} onPress={() => navigate('home')} activeOpacity={0.7}>
             <Text style={styles.backText}>← Back</Text>
           </TouchableOpacity>
 
-          {/* Header */}
+          {// Header }
           <View style={styles.header}>
             <Text style={styles.logoEmoji}>🌱</Text>
             <Text style={styles.title}>
@@ -58,7 +58,7 @@ export default function LoginScreen({ navigate }) {
             </Text>
           </View>
 
-          {/* Toggle tabs */}
+          {// Toggle tabs }
           <View style={styles.toggleRow}>
             {['login', 'signup'].map(m => (
               <TouchableOpacity
@@ -74,7 +74,7 @@ export default function LoginScreen({ navigate }) {
             ))}
           </View>
 
-          {/* Form */}
+          {// Form }
           <View style={styles.form}>
             {mode === 'signup' && (
               <>
@@ -255,3 +255,194 @@ const styles = StyleSheet.create({
   },
   noteText: { fontSize: 12, color: COLORS.primaryDark, lineHeight: 18 },
 });
+*/
+
+import React, { useState, useEffect } from 'react';
+import {
+  View, Text, TextInput, TouchableOpacity,
+  StyleSheet, SafeAreaView, ScrollView,
+  KeyboardAvoidingView, Platform, Alert,
+} from 'react-native';
+import { COLORS, FONTS, SPACING, RADIUS } from '../constants/theme';
+
+export default function LoginScreen({ navigation, route }) {
+  const [mode, setMode]           = useState('login');
+  const [studentId, setStudentId] = useState('');
+  const [rollNo, setRollNo]       = useState('');
+  const [password, setPassword]   = useState('');
+  const [name, setName]           = useState('');
+  const [branch, setBranch]       = useState('');
+  const [loading, setLoading]     = useState(false);
+
+  // ✅ Use route params (from HomeScreen)
+  useEffect(() => {
+    if (route?.params?.mode) {
+      setMode(route.params.mode);
+    }
+  }, [route?.params]);
+
+  const handleSubmit = () => {
+    if (!studentId || !password) {
+      Alert.alert('Missing fields', 'Please fill in all required fields.');
+      return;
+    }
+
+    if (mode === 'signup' && (!name || !branch)) {
+      Alert.alert('Missing fields', 'Please fill in your name and branch.');
+      return;
+    }
+
+    setLoading(true);
+
+    // simulate API
+    setTimeout(() => {
+      setLoading(false);
+      navigation.navigate('dashboard');
+    }, 1200);
+  };
+
+  return (
+    <SafeAreaView style={styles.safe}>
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      >
+        <ScrollView
+          style={styles.scroll}
+          keyboardShouldPersistTaps="handled"
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ paddingBottom: 100 }}
+        >
+
+          {/* Back */}
+          <TouchableOpacity
+            style={styles.backBtn}
+            onPress={() => navigation.goBack()}
+            activeOpacity={0.7}
+          >
+            <Text style={styles.backText}>← Back</Text>
+          </TouchableOpacity>
+
+          {/* Header */}
+          <View style={styles.header}>
+            <Text style={styles.logoEmoji}>🌱</Text>
+
+            <Text style={styles.title}>
+              {mode === 'login' ? 'Welcome back' : 'Join EcoQuest'}
+            </Text>
+
+            <Text style={styles.subtitle}>
+              {mode === 'login'
+                ? 'Sign in with your official Thapar student email ID'
+                : 'Create your account using your official Thapar student email ID'}
+            </Text>
+          </View>
+
+          {/* Toggle */}
+          <View style={styles.toggleRow}>
+            {['login', 'signup'].map(m => (
+              <TouchableOpacity
+                key={m}
+                style={[styles.toggleBtn, mode === m && styles.toggleActive]}
+                onPress={() => setMode(m)}
+                activeOpacity={0.8}
+              >
+                <Text style={[styles.toggleText, mode === m && styles.toggleTextActive]}>
+                  {m === 'login' ? 'Log in' : 'Sign up'}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+
+          {/* Form */}
+          <View style={styles.form}>
+
+            {mode === 'signup' && (
+              <>
+                <Text style={styles.label}>Full name</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="e.g. Arjun Kumar"
+                  placeholderTextColor={COLORS.textMuted}
+                  value={name}
+                  onChangeText={setName}
+                  autoCapitalize="words"
+                />
+              </>
+            )}
+
+            <Text style={styles.label}>Student Email ID</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="e.g. akumar4_be25@thapar.edu"
+              placeholderTextColor={COLORS.textMuted}
+              value={studentId}
+              onChangeText={setStudentId}
+              keyboardType="email-address"
+              autoCapitalize="none"
+              autoCorrect={false}
+            />
+
+            {mode === 'signup' && (
+              <>
+                <Text style={styles.label}>Roll No.</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="e.g. 1025045283"
+                  placeholderTextColor={COLORS.textMuted}
+                  value={rollNo}
+                  onChangeText={setRollNo}
+                />
+
+                <Text style={styles.label}>Branch</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="e.g. COE, ECE, ME"
+                  placeholderTextColor={COLORS.textMuted}
+                  value={branch}
+                  onChangeText={setBranch}
+                  autoCapitalize="characters"
+                />
+              </>
+            )}
+
+            <Text style={styles.label}>Password</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Password"
+              placeholderTextColor={COLORS.textMuted}
+              value={password}
+              onChangeText={setPassword}
+              secureTextEntry
+            />
+
+            {mode === 'login' && (
+              <TouchableOpacity style={styles.forgotBtn}>
+                <Text style={styles.forgotText}>Forgot password?</Text>
+              </TouchableOpacity>
+            )}
+
+            <TouchableOpacity
+              style={[styles.submitBtn, loading && styles.submitBtnLoading]}
+              onPress={handleSubmit}
+              disabled={loading}
+              activeOpacity={0.85}
+            >
+              <Text style={styles.submitText}>
+                {loading ? 'Please wait…' : mode === 'login' ? 'Log in' : 'Create account'}
+              </Text>
+            </TouchableOpacity>
+
+            <View style={styles.noteBox}>
+              <Text style={styles.noteText}>
+                🔒 Only official Thapar student Email IDs (@thapar.edu) are accepted.
+              </Text>
+            </View>
+
+          </View>
+
+        </ScrollView>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
+  );
+}
