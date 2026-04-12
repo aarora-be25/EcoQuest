@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
 
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { COLORS, FONTS, SPACING } from '../constants/theme';
 
 const TABS = [
@@ -85,12 +86,10 @@ const TABS = [
 ];
 
 export default function BottomNav({ active, navigate }) {
-  const handlePress = (key) => {
-    if (key !== active) navigate(key);
-  };
+  const insets = useSafeAreaInsets();
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { paddingBottom: insets.bottom }]}>
       {TABS.map(tab => {
         const isActive = active === tab.key;
 
@@ -98,23 +97,16 @@ export default function BottomNav({ active, navigate }) {
           <TouchableOpacity
             key={tab.key}
             style={styles.tab}
-            onPress={() => handlePress(tab.key)}
+            onPress={() => navigate(tab.key)}
             activeOpacity={0.8}
           >
-            {/* Active indicator */}
             {isActive && <View style={styles.activeDot} />}
 
-            <Text style={[
-              styles.icon,
-              isActive && styles.iconActive
-            ]}>
+            <Text style={[styles.icon, isActive && styles.iconActive]}>
               {tab.icon}
             </Text>
 
-            <Text style={[
-              styles.label,
-              isActive && styles.labelActive
-            ]}>
+            <Text style={[styles.label, isActive && styles.labelActive]}>
               {tab.label}
             </Text>
           </TouchableOpacity>
@@ -130,8 +122,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.bgCard,
     borderTopWidth: 1,
     borderTopColor: COLORS.border,
-    paddingVertical: SPACING.sm,
-    paddingBottom: SPACING.md,
+    paddingTop: SPACING.sm,
   },
 
   tab: {
@@ -157,7 +148,6 @@ const styles = StyleSheet.create({
 
   iconActive: {
     color: COLORS.primary,
-    transform: [{ scale: 1.05 }],
   },
 
   label: {
