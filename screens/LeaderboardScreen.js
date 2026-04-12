@@ -354,4 +354,78 @@ export default function LeaderboardScreen({ navigation }) {
 
     </SafeAreaView>
   );
+const styles = StyleSheet.create({
+  safe: { flex: 1, backgroundColor: COLORS.bgPage },
+
+  header: {
+    flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
+    backgroundColor: COLORS.primary,
+    padding: SPACING.base,
+    paddingTop: SPACING.xxl + SPACING.md,
+  },
+  headerTitle: { fontSize: 17, fontWeight: FONTS.heavy, color: COLORS.white },
+
+  myRankBanner: {
+    backgroundColor: COLORS.primaryDark,
+    flexDirection: 'row', alignItems: 'center',
+    padding: SPACING.md, paddingHorizontal: SPACING.base, gap: SPACING.md,
+  },
+  myRankLabel: { fontSize: 12, color: COLORS.primarySoft, flex: 1 },
+  myRankNum: { fontSize: 22, fontWeight: FONTS.heavy, color: COLORS.accent },
+  myRankPts: { fontSize: 14, fontWeight: FONTS.bold, color: COLORS.white },
+
+  tabRow: {
+    flexDirection: 'row',
+    backgroundColor: COLORS.primary,
+    paddingTop: SPACING.sm,
+    paddingHorizontal: SPACING.base,
+    paddingBottom: SPACING.sm,
+    gap: SPACING.sm,
+  },
+  tab: {
+    flex: 1, paddingVertical: SPACING.sm,
+    borderRadius: RADIUS.pill,
+    alignItems: 'center',
+    backgroundColor: 'rgba(255,255,255,0.15)',
+  },
+  tabActive: { backgroundColor: COLORS.white },
+  tabText: { fontSize: 13, fontWeight: FONTS.bold, color: 'rgba(255,255,255,0.7)' },
+  tabTextActive: { color: COLORS.primary },
+
+  body: { flex: 1, padding: SPACING.base },
+
+  podium: {
+    flexDirection: 'row', justifyContent: 'center',
+    alignItems: 'flex-end', gap: SPACING.xl,
+    paddingVertical: SPACING.xl,
+  },
+  podiumItem: { alignItems: 'center', gap: SPACING.sm },
+  podiumAv: {
+    width: 52, height: 52, borderRadius: 26,
+    alignItems: 'center', justifyContent: 'center',
+  },
+  podiumAvLarge: { width: 64, height: 64, borderRadius: 32 },
+  podiumName: { fontSize: 12, fontWeight: FONTS.bold, color: COLORS.textPrimary },
+  podiumPts: { fontSize: 13, fontWeight: FONTS.heavy, color: COLORS.primary },
+
+  listCard: {
+    backgroundColor: COLORS.bgCard,
+    borderRadius: RADIUS.md,
+    borderWidth: 1, borderColor: COLORS.border,
+    overflow: 'hidden',
+  },
+  row: {
+    flexDirection: 'row', alignItems: 'center', gap: SPACING.sm,
+    padding: SPACING.md,
+    borderBottomWidth: 1, borderBottomColor: COLORS.border,
+  },
+  rowYou: { backgroundColor: COLORS.primaryLight },
+  rank: { width: 24, fontSize: 12, fontWeight: FONTS.heavy, color: COLORS.textMuted },
+  av: { width: 32, height: 32, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
+  nameCol: { flex: 1 },
+  name: { fontSize: 13, color: COLORS.textPrimary, fontWeight: FONTS.medium },
+  nameYou: { fontWeight: FONTS.heavy, color: COLORS.primaryDark },
+  branch: { fontSize: 10, color: COLORS.textMuted, marginTop: 1 },
+  pts: { fontSize: 13, fontWeight: FONTS.heavy, color: COLORS.primary },
+});
 }
