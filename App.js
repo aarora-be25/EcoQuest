@@ -122,7 +122,3 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.bgPage,
   },
 });
-
-const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: COLORS.bgPage },
-});
