@@ -42,6 +42,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { COLORS } from './constants/theme';
 
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import * as SplashScreen from 'expo-splash-screen';
 
 // React Navigation
@@ -66,11 +67,9 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   const [appReady, setAppReady] = useState(false);
 
-  // Prepare app (loading phase)
   useEffect(() => {
     const prepare = async () => {
       try {
-        // simulate loading (API/fonts/etc)
         await new Promise(resolve => setTimeout(resolve, 1500));
       } catch (e) {
         console.log('Init error:', e);
@@ -82,7 +81,6 @@ export default function App() {
     prepare();
   }, []);
 
-  // Hide splash once layout is ready
   const onLayoutRootView = useCallback(async () => {
     if (appReady) {
       await SplashScreen.hideAsync().catch(() => {});
@@ -90,29 +88,29 @@ export default function App() {
   }, [appReady]);
 
   if (!appReady) {
-    return null; // keeps splash visible
+    return null;
   }
 
   return (
-    <View style={styles.root} onLayout={onLayoutRootView}>
-      <NavigationContainer>
-        <Stack.Navigator
-          initialRouteName="home"
-          screenOptions={{
-            headerShown: false, // change to true if you want default header
-          }}
-        >
-          <Stack.Screen name="home" component={HomeScreen} />
-          <Stack.Screen name="login" component={LoginScreen} />
-          <Stack.Screen name="dashboard" component={DashboardScreen} />
-          <Stack.Screen name="taskDetail" component={TaskDetailScreen} />
-          <Stack.Screen name="tasksList" component={TasksListScreen} />
-          <Stack.Screen name="leaderboard" component={LeaderboardScreen} />
-          <Stack.Screen name="profile" component={ProfileScreen} />
-          <Stack.Screen name="notifications" component={NotificationsScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </View>
+    <SafeAreaProvider>
+      <View style={styles.root} onLayout={onLayoutRootView}>
+        <NavigationContainer>
+          <Stack.Navigator
+            initialRouteName="home"
+            screenOptions={{ headerShown: false }}
+          >
+            <Stack.Screen name="home" component={HomeScreen} />
+            <Stack.Screen name="login" component={LoginScreen} />
+            <Stack.Screen name="dashboard" component={DashboardScreen} />
+            <Stack.Screen name="taskDetail" component={TaskDetailScreen} />
+            <Stack.Screen name="tasksList" component={TasksListScreen} />
+            <Stack.Screen name="leaderboard" component={LeaderboardScreen} />
+            <Stack.Screen name="profile" component={ProfileScreen} />
+            <Stack.Screen name="notifications" component={NotificationsScreen} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </View>
+    </SafeAreaProvider>
   );
 }
 
