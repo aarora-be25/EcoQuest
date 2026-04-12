@@ -2,28 +2,23 @@
 // Import this in every screen: import { COLORS, FONTS, SPACING, RADIUS } from '../constants/theme';
 
 export const COLORS = {
-  primary:       /*'#1D9E75'*/'#39948e',
-  primaryLight:  /*'#E1F5EE'*/'#c6ecfb',
-  primarySoft:   /*'#9FE1CB'*/'#87dcc1',
-  primaryDark:   /*'#085041'*/'#125a82',
-  primaryMid:    /*'#0F6E56'*/'#7ac370',
-
-  accent:        /*'#EF9F27'*/'#f6c76c',
-  accentLight:   /*'#FAEEDA'*/'#fef2a7',
-  accentDark:    /*'#633806'*/'#c48723',
-
+  primary:       '#39948e',
+  primaryLight:  '#c6ecfb',
+  primarySoft:   '#87dcc1',
+  primaryDark:   '#125a82',
+  primaryMid:    '#7ac370',
+  accent:        '#f6c76c',
+  accentLight:   '#fef2a7',
+  accentDark:    '#c48723',
   danger:        '#D85A30',
   dangerLight:   '#FAECE7',
   dangerDark:    '#712B13',
-
   white:         '#FFFFFF',
   bgPage:        '#F0F5F2',
   bgCard:        '#FFFFFF',
-
-  textMuted:   /*'#0d2b1f'*/'#4ec28d',
-  textSecondary: /*'#3d5a4e'*/'#95e266',
-  textPrimary:     /*'#7a9a8e'*/'#3fa9d4',
-
+  textPrimary:   '#0d2b1f',
+  textSecondary: '#3d5a4e',
+  textMuted:     '#7a9a8e',
   border:        '#DCE8E3',
   borderMid:     '#C5D8CF',
 };
