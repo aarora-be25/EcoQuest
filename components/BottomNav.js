@@ -84,9 +84,9 @@ const TABS = [
   { key: 'profile', label: 'Profile', icon: '👤' },
 ];
 
-export default function BottomNav({ active, navigation }) {
+export default function BottomNav({ active, navigate }) {
   const handlePress = (key) => {
-    navigation.navigate(key);
+    if (key !== active) navigate(key);
   };
 
   return (
@@ -101,6 +101,9 @@ export default function BottomNav({ active, navigation }) {
             onPress={() => handlePress(tab.key)}
             activeOpacity={0.8}
           >
+            {/* Active indicator */}
+            {isActive && <View style={styles.activeDot} />}
+
             <Text style={[
               styles.icon,
               isActive && styles.iconActive
@@ -128,12 +131,23 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: COLORS.border,
     paddingVertical: SPACING.sm,
+    paddingBottom: SPACING.md,
   },
 
   tab: {
     flex: 1,
     alignItems: 'center',
-    gap: 2,
+    justifyContent: 'center',
+    gap: 3,
+  },
+
+  activeDot: {
+    position: 'absolute',
+    top: 2,
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: COLORS.primary,
   },
 
   icon: {
@@ -143,6 +157,7 @@ const styles = StyleSheet.create({
 
   iconActive: {
     color: COLORS.primary,
+    transform: [{ scale: 1.05 }],
   },
 
   label: {
