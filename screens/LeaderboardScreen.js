@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+/*import React, { useState } from 'react';
 import {
   View, Text, ScrollView, TouchableOpacity,
   StyleSheet, SafeAreaView,
@@ -21,20 +21,20 @@ export default function LeaderboardScreen({ navigate }) {
   return (
     <SafeAreaView style={styles.safe}>
 
-      {/* Header */}
+      {// Header }
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Leaderboard</Text>
         <View style={{ width: 40 }} />
       </View>
 
-      {/* Your rank banner */}
+      {// Your rank banner }
       <View style={styles.myRankBanner}>
         <Text style={styles.myRankLabel}>Your rank</Text>
         <Text style={styles.myRankNum}>#{myRank}</Text>
         <Text style={styles.myRankPts}>{CURRENT_USER.pts} pts</Text>
       </View>
 
-      {/* Tabs */}
+      {// Tabs }
       <View style={styles.tabRow}>
         {[['branch', 'By branch'], ['year', 'By year']].map(([key, label]) => (
           <TouchableOpacity
@@ -50,9 +50,9 @@ export default function LeaderboardScreen({ navigate }) {
 
       <ScrollView style={styles.body} showsVerticalScrollIndicator={false}>
 
-        {/* Podium top 3 */}
+        {// Podium top 3 }
         <View style={styles.podium}>
-          {/* 2nd — left */}
+          {// 2nd — left }
           <View style={[styles.podiumItem, { marginTop: 30 }]}>
             <Text style={{ fontSize: 24 }}>{RANK_LABELS[1]}</Text>
             <View style={[styles.podiumAv, { backgroundColor: top3[1]?.bg || COLORS.primaryLight }]}>
@@ -64,7 +64,7 @@ export default function LeaderboardScreen({ navigate }) {
             <Text style={[styles.podiumPts, { color: RANK_COLORS[1] }]}>{top3[1]?.pts}</Text>
           </View>
 
-          {/* 1st — center, taller */}
+          {// 1st — center, taller }
           <View style={styles.podiumItem}>
             <Text style={{ fontSize: 28 }}>{RANK_LABELS[0]}</Text>
             <View style={[styles.podiumAv, styles.podiumAvLarge, { backgroundColor: top3[0]?.bg || COLORS.primaryLight }]}>
@@ -76,7 +76,7 @@ export default function LeaderboardScreen({ navigate }) {
             <Text style={[styles.podiumPts, { color: RANK_COLORS[0], fontSize: 16 }]}>{top3[0]?.pts}</Text>
           </View>
 
-          {/* 3rd — right */}
+          {// 3rd — right }
           <View style={[styles.podiumItem, { marginTop: 50 }]}>
             <Text style={{ fontSize: 20 }}>{RANK_LABELS[2]}</Text>
             <View style={[styles.podiumAv, { backgroundColor: top3[2]?.bg || COLORS.primaryLight }]}>
@@ -89,7 +89,7 @@ export default function LeaderboardScreen({ navigate }) {
           </View>
         </View>
 
-        {/* Full list */}
+        {// Full list }
         <View style={styles.listCard}>
           {data.map((person, i) => (
             <View
@@ -205,3 +205,153 @@ const styles = StyleSheet.create({
   branch: { fontSize: 10, color: COLORS.textMuted, marginTop: 1 },
   pts: { fontSize: 13, fontWeight: FONTS.heavy, color: COLORS.primary },
 });
+*/
+
+import React, { useState } from 'react';
+import {
+  View, Text, ScrollView, TouchableOpacity,
+  StyleSheet, SafeAreaView,
+} from 'react-native';
+import { COLORS, FONTS, SPACING, RADIUS } from '../constants/theme';
+import { BRANCH_LEADERBOARD, YEAR_LEADERBOARD, CURRENT_USER } from '../constants/data';
+import BottomNav from '../components/BottomNav';
+
+const RANK_COLORS = ['#EF9F27', '#9eafb8', '#c49060'];
+const RANK_LABELS = ['🥇', '🥈', '🥉'];
+
+export default function LeaderboardScreen({ navigation }) {
+  const [tab, setTab] = useState('branch');
+  const data = tab === 'branch' ? BRANCH_LEADERBOARD : YEAR_LEADERBOARD;
+
+  const top3   = data.slice(0, 3);
+  const myRank = data.findIndex(p => p.you) + 1;
+
+  return (
+    <SafeAreaView style={styles.safe}>
+
+      {/* Header */}
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>Leaderboard</Text>
+        <View style={{ width: 40 }} />
+      </View>
+
+      {/* Your rank */}
+      <View style={styles.myRankBanner}>
+        <Text style={styles.myRankLabel}>Your rank</Text>
+        <Text style={styles.myRankNum}>#{myRank}</Text>
+        <Text style={styles.myRankPts}>{CURRENT_USER.pts} pts</Text>
+      </View>
+
+      {/* Tabs */}
+      <View style={styles.tabRow}>
+        {[['branch', 'By branch'], ['year', 'By year']].map(([key, label]) => (
+          <TouchableOpacity
+            key={key}
+            style={[styles.tab, tab === key && styles.tabActive]}
+            onPress={() => setTab(key)}
+            activeOpacity={0.8}
+          >
+            <Text style={[styles.tabText, tab === key && styles.tabTextActive]}>
+              {label}
+            </Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+
+      <ScrollView
+        style={styles.body}
+        contentContainerStyle={{ paddingBottom: 90 }}
+        showsVerticalScrollIndicator={false}
+      >
+
+        {/* Podium */}
+        <View style={styles.podium}>
+          {top3.map((p, i) => (
+            <View
+              key={p?.id || i}
+              style={[
+                styles.podiumItem,
+                i === 1 && { marginTop: 30 },
+                i === 2 && { marginTop: 50 }
+              ]}
+            >
+              <Text style={{ fontSize: 24 }}>{RANK_LABELS[i]}</Text>
+
+              <View style={[
+                styles.podiumAv,
+                i === 0 && styles.podiumAvLarge,
+                { backgroundColor: p?.bg || COLORS.primaryLight }
+              ]}>
+                <Text style={{
+                  fontSize: i === 0 ? 16 : 13,
+                  fontWeight: FONTS.heavy,
+                  color: p?.fg || COLORS.primaryDark
+                }}>
+                  {p?.initials}
+                </Text>
+              </View>
+
+              <Text style={styles.podiumName}>
+                {p?.name?.split(' ')[0]}
+              </Text>
+
+              <Text style={[
+                styles.podiumPts,
+                { color: RANK_COLORS[i] }
+              ]}>
+                {p?.pts}
+              </Text>
+            </View>
+          ))}
+        </View>
+
+        {/* Full list */}
+        <View style={styles.listCard}>
+          {data.map((person, i) => (
+            <View
+              key={person.id}
+              style={[
+                styles.row,
+                person.you && styles.rowYou,
+                i === data.length - 1 && { borderBottomWidth: 0 },
+              ]}
+            >
+              <Text style={[styles.rank, i < 3 && { color: RANK_COLORS[i] }]}>
+                #{i + 1}
+              </Text>
+
+              <View style={[styles.av, { backgroundColor: person.bg }]}>
+                <Text style={{
+                  fontSize: 11,
+                  fontWeight: FONTS.heavy,
+                  color: person.fg
+                }}>
+                  {person.initials}
+                </Text>
+              </View>
+
+              <View style={styles.nameCol}>
+                <Text style={[styles.name, person.you && styles.nameYou]}>
+                  {person.name}{person.you ? ' (you)' : ''}
+                </Text>
+
+                {person.branch && (
+                  <Text style={styles.branch}>{person.branch}</Text>
+                )}
+              </View>
+
+              <Text style={[styles.pts, i < 3 && { color: RANK_COLORS[i] }]}>
+                {person.pts} pts
+              </Text>
+            </View>
+          ))}
+        </View>
+
+      </ScrollView>
+
+      {/* Bottom Nav */}
+      <BottomNav active="leaderboard" navigation={navigation} />
+
+    </SafeAreaView>
+  );
+}
