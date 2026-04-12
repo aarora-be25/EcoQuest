@@ -412,6 +412,7 @@ export default function LoginScreen({ navigation, route }) {
               placeholder="Password"
               placeholderTextColor={COLORS.textMuted}
               value={password}
+              autoCapitalize="none"
               onChangeText={setPassword}
               secureTextEntry
             />
