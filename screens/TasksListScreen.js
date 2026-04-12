@@ -329,6 +329,7 @@ const styles = StyleSheet.create({
     gap: SPACING.sm,
   },
 
+  /*
   chip: {
     paddingHorizontal: SPACING.sm,
     paddingVertical: 6,
@@ -342,7 +343,30 @@ const styles = StyleSheet.create({
     color: 'rgba(255,255,255,0.8)',
   },
   chipTextActive: { color: COLORS.primary },
+*/
+  chip: {
+  paddingHorizontal: SPACING.sm,
+  paddingVertical: 6,
+  borderRadius: RADIUS.pill,
+  backgroundColor: COLORS.primaryLight,
+},
 
+chipActive: {
+  backgroundColor: COLORS.white,
+  borderWidth: 1,
+  borderColor: COLORS.primary,
+},
+
+chipText: {
+  fontSize: 12,
+  fontWeight: FONTS.bold,
+  color: COLORS.primaryDark,
+},
+
+chipTextActive: {
+  color: COLORS.primary,
+},
+  
   body: {
     padding: SPACING.base,
   },
