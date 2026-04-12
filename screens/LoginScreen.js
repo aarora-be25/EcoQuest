@@ -446,3 +446,84 @@ export default function LoginScreen({ navigation, route }) {
     </SafeAreaView>
   );
 }
+const styles = StyleSheet.create({
+  safe:   { flex: 1, backgroundColor: COLORS.bgPage },
+  scroll: { flex: 1, paddingHorizontal: SPACING.base },
+
+  backBtn: { padding: SPACING.base, paddingBottom: SPACING.base },
+  backText: { paddingTop: SPACING.md, fontSize: 14, fontWeight: FONTS.semibold, color: COLORS.primary },
+
+  header: { alignItems: 'center', paddingVertical: SPACING.xl },
+  logoEmoji: { fontSize: 44, marginBottom: SPACING.md },
+  title: {
+    fontSize: 26,
+    fontWeight: FONTS.heavy,
+    color: COLORS.textPrimary,
+    marginBottom: SPACING.sm,
+    textAlign: 'center',
+  },
+  subtitle: {
+    fontSize: 13,
+    color: COLORS.textMuted,
+    textAlign: 'center',
+    lineHeight: 20,
+  },
+
+  toggleRow: {
+    flexDirection: 'row',
+    backgroundColor: COLORS.bgCard,
+    borderRadius: RADIUS.pill,
+    borderWidth: 1,
+    borderColor: COLORS.border,
+    padding: 4,
+    marginBottom: SPACING.xl,
+  },
+  toggleBtn: {
+    flex: 1,
+    paddingVertical: SPACING.sm,
+    borderRadius: RADIUS.pill,
+    alignItems: 'center',
+  },
+  toggleActive: { backgroundColor: COLORS.primary },
+  toggleText: { fontSize: 14, fontWeight: FONTS.bold, color: COLORS.textMuted },
+  toggleTextActive: { color: COLORS.white },
+
+  form: {},
+  label: {
+    fontSize: 12,
+    fontWeight: FONTS.bold,
+    color: COLORS.textSecondary,
+    marginBottom: SPACING.xs,
+    marginTop: SPACING.md,
+  },
+  input: {
+    backgroundColor: COLORS.bgCard,
+    borderRadius: RADIUS.md,
+    borderWidth: 1,
+    borderColor: COLORS.border,
+    padding: SPACING.md,
+    fontSize: 14,
+    color: COLORS.textPrimary,
+  },
+
+  forgotBtn: { alignSelf: 'flex-end', marginTop: SPACING.sm },
+  forgotText: { fontSize: 12, color: COLORS.primary, fontWeight: FONTS.semibold },
+
+  submitBtn: {
+    backgroundColor: COLORS.primary,
+    borderRadius: RADIUS.pill,
+    padding: SPACING.base,
+    alignItems: 'center',
+    marginTop: SPACING.xl,
+  },
+  submitBtnLoading: { backgroundColor: COLORS.primarySoft },
+  submitText: { color: COLORS.white, fontSize: 15, fontWeight: FONTS.heavy },
+
+  noteBox: {
+    backgroundColor: COLORS.primaryLight,
+    borderRadius: RADIUS.md,
+    padding: SPACING.md,
+    marginTop: SPACING.xl,
+  },
+  noteText: { fontSize: 12, color: COLORS.primaryDark, lineHeight: 18 },
+});
