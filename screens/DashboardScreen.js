@@ -289,7 +289,7 @@ export default function DashboardScreen({ navigation }) {
           </View>
 
           <Text style={styles.branchTag}>
-            {CURRENT_USER.branch}{'\n'}{CURRENT_USER.year} year
+            {CURRENT_USER.branch}{'\n'}{CURRENT_USER.year}
           </Text>
         </View>
       </View>
