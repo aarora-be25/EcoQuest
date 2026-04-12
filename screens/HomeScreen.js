@@ -323,9 +323,9 @@ const styles = StyleSheet.create({
   },
  
   logoCircle: {
-    width: 220,
-    height: 220,
-    borderRadius: 110,
+    width: 160,
+    height: 160,
+    borderRadius: 80,
     backgroundColor: COLORS.primaryLight,
     alignItems: 'center',
     justifyContent: 'center',
