@@ -283,7 +283,7 @@ export default function HomeScreen({ navigation }) {
 
         {/* Stats */}
         <View style={styles.statsStrip}>
-          {[['240+', 'Students'], ['18', 'Eco tasks'], ['1st year', 'UEN008']].map(([num, lbl], i) => (
+          {[['8', 'Eco tasks'], ['Developed by 1st year students', 'Course Code UEN008']].map(([num, lbl], i) => (
             <View key={i} style={styles.statItem}>
               <Text style={styles.statNum}>{num}</Text>
               <Text style={styles.statLbl}>{lbl}</Text>
