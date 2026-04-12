@@ -231,7 +231,7 @@ const FEATURES = [
   { icon: '📷', title: 'Photo verification', desc: 'Each task requires a photo proof to earn points. No cheating allowed.' },
   { icon: '🏆', title: 'Branch leaderboard', desc: 'Compete within your branch or across all first-years. Climb the ranks.' },
   { icon: '⚡', title: 'Earn & lose points', desc: 'Verified- cheating deducts your points. Be real; keep it clean, keep it green.' },
-  { icon: '8️⃣', title: '8 Eco tasks', desc: 'Currently, 8 eco tasks available. List available on tasks page after login.' },
+  { icon: '8️⃣', title: '8 Eco tasks', desc: 'Currently, 8 eco tasks are available. List available on tasks page, visibile after login.' },
 ];
 
 export default function HomeScreen({ navigation }) {
@@ -260,7 +260,7 @@ export default function HomeScreen({ navigation }) {
 
           <Text style={styles.subtitle}>
             A sustainability challenge for TIET students.{'\n'}
-            Log eco-friendly actions, earn points, compete with your branch.
+            Log eco-friendly actions, earn points, compete with other students.
           </Text>
         </LinearGradient>
 
@@ -284,7 +284,7 @@ export default function HomeScreen({ navigation }) {
 
         {/* Stats */}
         <View style={styles.statsStrip}>
-          {[['1st year; UEN008', 'Still under construction']].map(([num, lbl], i) => (
+          {[['Made by 1st year students', 'Still under construction']].map(([num, lbl], i) => (
             <View key={i} style={styles.statItem}>
               <Text style={styles.statNum}>{num}</Text>
               <Text style={styles.statLbl}>{lbl}</Text>
@@ -333,8 +333,8 @@ const styles = StyleSheet.create({
   },
   
   logoImage: {
-  width: 100,
-  height: 100,
+  width: 200,
+  height: 200,
   resizeMode: 'contain',
 },
   appName: {
@@ -410,7 +410,7 @@ const styles = StyleSheet.create({
     marginBottom: SPACING.xl,
   },
   statItem: { alignItems: 'center' },
-  statNum: { fontSize: 20, fontWeight: FONTS.heavy, color: COLORS.accent },
+  statNum: { fontSize: 16, fontWeight: FONTS.heavy, color: COLORS.accent },
   statLbl: { fontSize: 11, color: COLORS.primarySoft, marginTop: 2 },
 
   ctas: { paddingHorizontal: SPACING.base, gap: SPACING.sm },
