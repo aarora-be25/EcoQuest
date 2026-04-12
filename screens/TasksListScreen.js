@@ -1,92 +1,4 @@
-/*import React, { useState } from 'react';
-import {
-  View, Text, ScrollView, TouchableOpacity,
-  StyleSheet, SafeAreaView,
-} from 'react-native';
-import { COLORS, FONTS, SPACING, RADIUS } from '../constants/theme';
-import { TASKS } from '../constants/data';
-import TaskCard from '../components/TaskCard';
-import BottomNav from '../components/BottomNav';
-
-const CATEGORIES = ['All', 'Waste', 'Transport', 'Energy', 'Water', 'Nature'];
-
-export default function TasksListScreen({ navigate }) {
-  const [tasks, setTasks]     = useState(TASKS);
-  const [filter, setFilter]   = useState('All');
-
-  const filtered = filter === 'All' ? tasks : tasks.filter(t => t.category === filter);
-  const doneCnt  = tasks.filter(t => t.done).length;
-
-  const handlePress = (task) => {
-    if (task.done || task.flagged) return;
-    navigate('taskDetail', { task });
-  };
-
-  return (
-    <SafeAreaView style={styles.safe}>
-
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>Tasks</Text>
-        <Text style={styles.headerSub}>{doneCnt} / {tasks.length} completed</Text>
-      </View>
-
-      {// Category filter }
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        style={styles.filterScroll}
-        contentContainerStyle={styles.filterRow}
-      >
-        {CATEGORIES.map(cat => (
-          <TouchableOpacity
-            key={cat}
-            style={[styles.chip, filter === cat && styles.chipActive]}
-            onPress={() => setFilter(cat)}
-            activeOpacity={0.8}
-          >
-            <Text style={[styles.chipText, filter === cat && styles.chipTextActive]}>{cat}</Text>
-          </TouchableOpacity>
-        ))}
-      </ScrollView>
-
-      <ScrollView style={styles.body} showsVerticalScrollIndicator={false}>
-        <Text style={styles.countLabel}>{filtered.length} tasks</Text>
-        {filtered.map(task => (
-          <TaskCard key={task.id} task={task} onPress={handlePress} />
-        ))}
-        <View style={{ height: SPACING.xxl * 2 }} />
-      </ScrollView>
-
-      <BottomNav active="tasksList" navigate={navigate} />
-    </SafeAreaView>
-  );
-}
-
-const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: COLORS.bgPage },
-
-  header: {
-    backgroundColor: COLORS.primary, padding: SPACING.base, paddingBottom: SPACING.md, paddingTop: SPACING.xxl,
-  },
-  headerTitle: { fontSize: 22, fontWeight: FONTS.heavy, color: COLORS.white },
-  headerSub: { fontSize: 13, color: COLORS.primarySoft, marginTop: 3 },
-
-  filterScroll: { backgroundColor: COLORS.primary },
-  filterRow: { paddingHorizontal: SPACING.base, paddingBottom: SPACING.md, gap: SPACING.sm },
-
-  chip: {
-    paddingHorizontal: SPACING.md, paddingVertical: SPACING.sm,
-    borderRadius: RADIUS.pill,
-    backgroundColor: 'rgba(255,255,255,0.18)',
-  },
-  chipActive: { backgroundColor: COLORS.white },
-  chipText: { fontSize: 13, fontWeight: FONTS.bold, color: 'rgba(255,255,255,0.8)' },
-  chipTextActive: { color: COLORS.primary },
-
-  body: { flex: 1, padding: SPACING.base },
-  countLabel: { fontSize: 11, color: COLORS.textMuted, marginBottom: SPACING.sm },
-});
-*/
+/*
 import React, { useState } from 'react';
 import {
   View, Text, ScrollView, TouchableOpacity,
@@ -127,7 +39,7 @@ export default function TasksListScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.safe}>
 
-      {/* Header */}
+      {// Header }
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Tasks</Text>
         <Text style={styles.headerSub}>
@@ -135,7 +47,7 @@ export default function TasksListScreen({ navigation }) {
         </Text>
       </View>
 
-      {/* Category filter */}
+      {// Category filter }
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
@@ -164,7 +76,7 @@ export default function TasksListScreen({ navigation }) {
         ))}
       </ScrollView>
 
-      {/* Tasks list */}
+      {// Tasks list }
       <ScrollView
         style={styles.body}
         showsVerticalScrollIndicator={false}
@@ -243,6 +155,195 @@ const styles = StyleSheet.create({
 
   body: {
     flex: 1,
+    padding: SPACING.base,
+  },
+
+  countLabel: {
+    fontSize: 11,
+    color: COLORS.textMuted,
+    marginBottom: SPACING.sm,
+  },
+
+  emptyState: {
+    alignItems: 'center',
+    paddingVertical: SPACING.xxl,
+    gap: SPACING.sm,
+  },
+  emptyTitle: {
+    fontSize: 16,
+    fontWeight: FONTS.heavy,
+    color: COLORS.textPrimary,
+  },
+  emptyDesc: {
+    fontSize: 12,
+    color: COLORS.textMuted,
+    textAlign: 'center',
+  },
+});
+*/
+import React, { useState } from 'react';
+import {
+  View, Text, ScrollView, TouchableOpacity,
+  StyleSheet, SafeAreaView,
+} from 'react-native';
+import { COLORS, FONTS, SPACING, RADIUS } from '../constants/theme';
+import { TASKS } from '../constants/data';
+import TaskCard from '../components/TaskCard';
+import BottomNav from '../components/BottomNav';
+
+const CATEGORIES = ['All', 'Waste', 'Transport', 'Energy', 'Water', 'Nature'];
+
+export default function TasksListScreen({ navigation }) {
+  const [tasks, setTasks]   = useState(TASKS);
+  const [filter, setFilter] = useState('All');
+
+  const filtered = filter === 'All'
+    ? tasks
+    : tasks.filter(t => t.category === filter);
+
+  const doneCnt = tasks.filter(t => t.done).length;
+
+  const handlePress = (task) => {
+    if (task.done || task.flagged) return;
+
+    navigation.navigate('taskDetail', {
+      task,
+      onComplete: (taskId) => {
+        setTasks(prev =>
+          prev.map(t =>
+            t.id === taskId ? { ...t, done: true } : t
+          )
+        );
+      },
+    });
+  };
+
+  return (
+    <SafeAreaView style={styles.safe}>
+
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        stickyHeaderIndices={[1]} // 👈 THIS MAKES FILTER STICK
+      >
+
+        {/* Header */}
+        <View style={styles.header}>
+          <Text style={styles.headerTitle}>Tasks</Text>
+          <Text style={styles.headerSub}>
+            {doneCnt} / {tasks.length} completed
+          </Text>
+        </View>
+
+        {/* Sticky Filter */}
+        <View style={styles.filterWrapper}>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.filterRow}
+          >
+            {CATEGORIES.map(cat => (
+              <TouchableOpacity
+                key={cat}
+                style={[
+                  styles.chip,
+                  filter === cat && styles.chipActive
+                ]}
+                onPress={() => setFilter(cat)}
+                activeOpacity={0.8}
+              >
+                <Text
+                  style={[
+                    styles.chipText,
+                    filter === cat && styles.chipTextActive
+                  ]}
+                >
+                  {cat}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+        </View>
+
+        {/* Tasks */}
+        <View style={styles.body}>
+          <Text style={styles.countLabel}>
+            {filtered.length} task{filtered.length !== 1 ? 's' : ''}
+          </Text>
+
+          {filtered.length === 0 ? (
+            <View style={styles.emptyState}>
+              <Text style={{ fontSize: 40 }}>🌱</Text>
+              <Text style={styles.emptyTitle}>No tasks here</Text>
+              <Text style={styles.emptyDesc}>
+                Try switching category or check back later.
+              </Text>
+            </View>
+          ) : (
+            filtered.map(task => (
+              <TaskCard
+                key={task.id}
+                task={task}
+                onPress={handlePress}
+              />
+            ))
+          )}
+
+          <View style={{ height: SPACING.xxl * 2 }} />
+        </View>
+
+      </ScrollView>
+
+      <BottomNav active="tasksList" navigation={navigation} />
+    </SafeAreaView>
+  );
+}
+
+const styles = StyleSheet.create({
+  safe: { flex: 1, backgroundColor: COLORS.bgPage },
+
+  header: {
+    backgroundColor: COLORS.primary,
+    padding: SPACING.base,
+    paddingTop: SPACING.xxl,
+    paddingBottom: SPACING.sm,
+  },
+  headerTitle: {
+    fontSize: 22,
+    fontWeight: FONTS.heavy,
+    color: COLORS.white,
+  },
+  headerSub: {
+    fontSize: 13,
+    color: COLORS.primarySoft,
+    marginTop: 3,
+  },
+
+  // 👇 IMPORTANT: wrapper needed for sticky bg
+  filterWrapper: {
+    backgroundColor: COLORS.primary,
+  },
+
+  filterRow: {
+    paddingHorizontal: SPACING.base,
+    paddingBottom: SPACING.sm,
+    gap: SPACING.sm,
+  },
+
+  chip: {
+    paddingHorizontal: SPACING.sm,
+    paddingVertical: 6,
+    borderRadius: RADIUS.pill,
+    backgroundColor: 'rgba(255,255,255,0.18)',
+  },
+  chipActive: { backgroundColor: COLORS.white },
+  chipText: {
+    fontSize: 12,
+    fontWeight: FONTS.bold,
+    color: 'rgba(255,255,255,0.8)',
+  },
+  chipTextActive: { color: COLORS.primary },
+
+  body: {
     padding: SPACING.base,
   },
 
