@@ -168,6 +168,7 @@ export default function TasksListScreen({ navigation }) {
       <ScrollView
         style={styles.body}
         showsVerticalScrollIndicator={false}
+        stickyHeaderIndices={[1]}
       >
         <Text style={styles.countLabel}>
           {filtered.length} task{filtered.length !== 1 ? 's' : ''}
@@ -227,8 +228,8 @@ const styles = StyleSheet.create({
   },
 
   chip: {
-    paddingHorizontal: SPACING.md,
-    paddingVertical: SPACING.sm,
+    paddingHorizontal: SPACING.sm,
+    paddingVertical: 6,
     borderRadius: RADIUS.pill,
     backgroundColor: 'rgba(255,255,255,0.18)',
   },
