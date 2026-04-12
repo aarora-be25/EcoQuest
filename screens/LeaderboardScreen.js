@@ -221,7 +221,7 @@ const RANK_LABELS = ['🥇', '🥈', '🥉'];
 
 export default function LeaderboardScreen({ navigation }) {
   const [tab, setTab] = useState('branch');
-  const data = tab === 'branch' ? BRANCH_LEADERBOARD : 'year' ? YEAR_LEADERBOARD;
+  const data = tab === 'branch' ? BRANCH_LEADERBOARD : YEAR_LEADERBOARD;
 
   const top3   = data.slice(0, 3);
   const myRank = data.findIndex(p => p.you) + 1;
