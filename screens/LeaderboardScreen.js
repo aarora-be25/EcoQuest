@@ -20,20 +20,20 @@ export default function LeaderboardScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.safe}>
 
-      {// Header }
+      // Header }
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Leaderboard</Text>
         <View style={{ width: 40 }} />
       </View>
 
-      {// Your rank }
+      // Your rank }
       <View style={styles.myRankBanner}>
         <Text style={styles.myRankLabel}>Your rank</Text>
         <Text style={styles.myRankNum}>#{myRank}</Text>
         <Text style={styles.myRankPts}>{CURRENT_USER.pts} pts</Text>
       </View>
 
-      {// Tabs }
+      // Tabs }
       <View style={styles.tabRow}>
         {[['branch', 'Yearwise'], ['year', 'Branchwise']].map(([key, label]) => (
           <TouchableOpacity
@@ -55,7 +55,7 @@ export default function LeaderboardScreen({ navigation }) {
         showsVerticalScrollIndicator={false}
       >
 
-        {// Podium }
+        // Podium }
         <View style={styles.podium}>
           {top3.map((p, i) => (
             <View
@@ -96,7 +96,7 @@ export default function LeaderboardScreen({ navigation }) {
           ))}
         </View>
 
-        {// Full list }
+        // Full list }
         <View style={styles.listCard}>
           {data.map((person, i) => (
             <View
@@ -144,7 +144,7 @@ export default function LeaderboardScreen({ navigation }) {
 
       </ScrollView>
 
-      {// Bottom Nav }
+      // Bottom Nav }
       <BottomNav active="leaderboard" navigation={navigation} />
 
     </SafeAreaView>
