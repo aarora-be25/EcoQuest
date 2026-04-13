@@ -1,186 +1,3 @@
-/*
-import React, { useState } from 'react';
-import {
-  View, Text, ScrollView, TouchableOpacity,
-  StyleSheet, SafeAreaView,
-} from 'react-native';
-import { COLORS, FONTS, SPACING, RADIUS } from '../constants/theme';
-import { TASKS } from '../constants/data';
-import TaskCard from '../components/TaskCard';
-import BottomNav from '../components/BottomNav';
-
-const CATEGORIES = ['All', 'Waste', 'Transport', 'Energy', 'Water', 'Nature'];
-
-export default function TasksListScreen({ navigation }) {
-  const [tasks, setTasks]   = useState(TASKS);
-  const [filter, setFilter] = useState('All');
-
-  const filtered = filter === 'All'
-    ? tasks
-    : tasks.filter(t => t.category === filter);
-
-  const doneCnt = tasks.filter(t => t.done).length;
-
-  const handlePress = (task) => {
-    if (task.done || task.flagged) return;
-
-    navigation.navigate('taskDetail', {
-      task,
-      onComplete: (taskId, ptsEarned) => {
-        setTasks(prev =>
-          prev.map(t =>
-            t.id === taskId ? { ...t, done: true } : t
-          )
-        );
-      },
-    });
-  };
-
-  return (
-    <SafeAreaView style={styles.safe}>
-
-      {// Header }
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>Tasks</Text>
-        <Text style={styles.headerSub}>
-          {doneCnt} / {tasks.length} completed
-        </Text>
-      </View>
-
-      {// Category filter }
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        style={styles.filterScroll}
-        contentContainerStyle={styles.filterRow}
-      >
-        {CATEGORIES.map(cat => (
-          <TouchableOpacity
-            key={cat}
-            style={[
-              styles.chip,
-              filter === cat && styles.chipActive
-            ]}
-            onPress={() => setFilter(cat)}
-            activeOpacity={0.8}
-          >
-            <Text
-              style={[
-                styles.chipText,
-                filter === cat && styles.chipTextActive
-              ]}
-            >
-              {cat}
-            </Text>
-          </TouchableOpacity>
-        ))}
-      </ScrollView>
-
-      {// Tasks list }
-      <ScrollView
-        style={styles.body}
-        showsVerticalScrollIndicator={false}
-        stickyHeaderIndices={[1]}
-      >
-        <Text style={styles.countLabel}>
-          {filtered.length} task{filtered.length !== 1 ? 's' : ''}
-        </Text>
-
-        {filtered.length === 0 ? (
-          <View style={styles.emptyState}>
-            <Text style={{ fontSize: 40 }}>🌱</Text>
-            <Text style={styles.emptyTitle}>No tasks here</Text>
-            <Text style={styles.emptyDesc}>
-              Try switching category or check back later.
-            </Text>
-          </View>
-        ) : (
-          filtered.map(task => (
-            <TaskCard
-              key={task.id}
-              task={task}
-              onPress={handlePress}
-            />
-          ))
-        )}
-
-        <View style={{ height: SPACING.xxl * 2 }} />
-      </ScrollView>
-
-      <BottomNav active="tasksList" navigation={navigation} />
-    </SafeAreaView>
-  );
-}
-
-const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: COLORS.bgPage },
-
-  header: {
-    backgroundColor: COLORS.primary,
-    padding: SPACING.base,
-    paddingBottom: SPACING.md,
-    paddingTop: SPACING.xxl,
-  },
-  headerTitle: {
-    fontSize: 22,
-    fontWeight: FONTS.heavy,
-    color: COLORS.white,
-  },
-  headerSub: {
-    fontSize: 13,
-    color: COLORS.primarySoft,
-    marginTop: 3,
-  },
-
-  filterScroll: { backgroundColor: COLORS.primary },
-  filterRow: {
-    paddingHorizontal: SPACING.base,
-    paddingBottom: SPACING.md,
-    gap: SPACING.sm,
-  },
-
-  chip: {
-    paddingHorizontal: SPACING.sm,
-    paddingVertical: 6,
-    borderRadius: RADIUS.pill,
-    backgroundColor: 'rgba(255,255,255,0.18)',
-  },
-  chipActive: { backgroundColor: COLORS.white },
-  chipText: {
-    fontSize: 13,
-    fontWeight: FONTS.bold,
-    color: 'rgba(255,255,255,0.8)',
-  },
-  chipTextActive: { color: COLORS.primary },
-
-  body: {
-    flex: 1,
-    padding: SPACING.base,
-  },
-
-  countLabel: {
-    fontSize: 11,
-    color: COLORS.textMuted,
-    marginBottom: SPACING.sm,
-  },
-
-  emptyState: {
-    alignItems: 'center',
-    paddingVertical: SPACING.xxl,
-    gap: SPACING.sm,
-  },
-  emptyTitle: {
-    fontSize: 16,
-    fontWeight: FONTS.heavy,
-    color: COLORS.textPrimary,
-  },
-  emptyDesc: {
-    fontSize: 12,
-    color: COLORS.textMuted,
-    textAlign: 'center',
-  },
-});
-*/
 import React, { useState } from 'react';
 import {
   View, Text, ScrollView, TouchableOpacity,
@@ -226,7 +43,7 @@ export default function TasksListScreen({ navigation }) {
         stickyHeaderIndices={[1]} // 👈 THIS MAKES FILTER STICK
       >
 
-        {/* Header */}
+        // Header }
         <View style={styles.header}>
           <Text style={styles.headerTitle}>Tasks</Text>
           <Text style={styles.headerSub}>
@@ -234,7 +51,7 @@ export default function TasksListScreen({ navigation }) {
           </Text>
         </View>
 
-        {/* Sticky Filter */}
+        // Sticky Filter }
         <View style={styles.filterWrapper}>
           <ScrollView
             horizontal
@@ -264,7 +81,7 @@ export default function TasksListScreen({ navigation }) {
           </ScrollView>
         </View>
 
-        {/* Tasks */}
+        // Tasks }
         <View style={styles.body}>
           <Text style={styles.countLabel}>
             {filtered.length} task{filtered.length !== 1 ? 's' : ''}
