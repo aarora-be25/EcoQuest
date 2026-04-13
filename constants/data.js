@@ -1,6 +1,7 @@
 // EcoQuest — Mock Data
 // Replace these with real API calls once your backend is ready
 
+/*
 export const CURRENT_USER = {
   id:       'u001',
   name:     'Arjun Kumar',
@@ -12,6 +13,27 @@ export const CURRENT_USER = {
   pts:      320,
   rank:     3,
   tasksCompleted: 12,
+};
+*/
+export let CURRENT_USER = null;
+
+export const setCurrentUser = (userData) => {
+  CURRENT_USER = {
+    id: 'u001',
+    ...userData,
+    initials: getInitials(userData.name),
+    pts: 0,
+    rank: 0,
+    tasksCompleted: 0,
+  };
+};
+
+const getInitials = (name = '') => {
+  return name
+    .split(' ')
+    .map(n => n[0])
+    .join('')
+    .toUpperCase();
 };
 
 export const TASKS = [
