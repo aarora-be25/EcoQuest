@@ -1,4 +1,4 @@
-/*import React, { useState } from 'react';
+/* import React, { useState } from 'react';
 import {
   View, Text, ScrollView, TouchableOpacity,
   StyleSheet, SafeAreaView,
@@ -10,12 +10,11 @@ import BottomNav from '../components/BottomNav';
 const RANK_COLORS = ['#EF9F27', '#9eafb8', '#c49060'];
 const RANK_LABELS = ['🥇', '🥈', '🥉'];
 
-export default function LeaderboardScreen({ navigate }) {
+export default function LeaderboardScreen({ navigation }) {
   const [tab, setTab] = useState('branch');
   const data = tab === 'branch' ? BRANCH_LEADERBOARD : YEAR_LEADERBOARD;
 
   const top3   = data.slice(0, 3);
-  const rest   = data.slice(3);
   const myRank = data.findIndex(p => p.you) + 1;
 
   return (
@@ -27,7 +26,7 @@ export default function LeaderboardScreen({ navigate }) {
         <View style={{ width: 40 }} />
       </View>
 
-      {// Your rank banner }
+      {// Your rank }
       <View style={styles.myRankBanner}>
         <Text style={styles.myRankLabel}>Your rank</Text>
         <Text style={styles.myRankNum}>#{myRank}</Text>
@@ -36,57 +35,65 @@ export default function LeaderboardScreen({ navigate }) {
 
       {// Tabs }
       <View style={styles.tabRow}>
-        {[['branch', 'By branch'], ['year', 'By year']].map(([key, label]) => (
+        {[['branch', 'Yearwise'], ['year', 'Branchwise']].map(([key, label]) => (
           <TouchableOpacity
             key={key}
             style={[styles.tab, tab === key && styles.tabActive]}
             onPress={() => setTab(key)}
             activeOpacity={0.8}
           >
-            <Text style={[styles.tabText, tab === key && styles.tabTextActive]}>{label}</Text>
+            <Text style={[styles.tabText, tab === key && styles.tabTextActive]}>
+              {label}
+            </Text>
           </TouchableOpacity>
         ))}
       </View>
 
-      <ScrollView style={styles.body} showsVerticalScrollIndicator={false}>
+      <ScrollView
+        style={styles.body}
+        contentContainerStyle={{ paddingBottom: 90 }}
+        showsVerticalScrollIndicator={false}
+      >
 
-        {// Podium top 3 }
+        {// Podium }
         <View style={styles.podium}>
-          {// 2nd — left }
-          <View style={[styles.podiumItem, { marginTop: 30 }]}>
-            <Text style={{ fontSize: 24 }}>{RANK_LABELS[1]}</Text>
-            <View style={[styles.podiumAv, { backgroundColor: top3[1]?.bg || COLORS.primaryLight }]}>
-              <Text style={{ fontSize: 13, fontWeight: FONTS.heavy, color: top3[1]?.fg || COLORS.primaryDark }}>
-                {top3[1]?.initials}
-              </Text>
-            </View>
-            <Text style={styles.podiumName}>{top3[1]?.name?.split(' ')[0]}</Text>
-            <Text style={[styles.podiumPts, { color: RANK_COLORS[1] }]}>{top3[1]?.pts}</Text>
-          </View>
+          {top3.map((p, i) => (
+            <View
+              key={p?.id || i}
+              style={[
+                styles.podiumItem,
+                i === 1 && { marginTop: 30 },
+                i === 2 && { marginTop: 50 }
+              ]}
+            >
+              <Text style={{ fontSize: 24 }}>{RANK_LABELS[i]}</Text>
 
-          {// 1st — center, taller }
-          <View style={styles.podiumItem}>
-            <Text style={{ fontSize: 28 }}>{RANK_LABELS[0]}</Text>
-            <View style={[styles.podiumAv, styles.podiumAvLarge, { backgroundColor: top3[0]?.bg || COLORS.primaryLight }]}>
-              <Text style={{ fontSize: 16, fontWeight: FONTS.heavy, color: top3[0]?.fg || COLORS.primaryDark }}>
-                {top3[0]?.initials}
-              </Text>
-            </View>
-            <Text style={styles.podiumName}>{top3[0]?.name?.split(' ')[0]}</Text>
-            <Text style={[styles.podiumPts, { color: RANK_COLORS[0], fontSize: 16 }]}>{top3[0]?.pts}</Text>
-          </View>
+              <View style={[
+                styles.podiumAv,
+                i === 0 && styles.podiumAvLarge,
+                { backgroundColor: p?.bg || COLORS.primaryLight }
+              ]}>
+                <Text style={{
+                  fontSize: i === 0 ? 16 : 13,
+                  fontWeight: FONTS.heavy,
+                  color: p?.fg || COLORS.primaryDark
+                }}>
+                  {p?.initials}
+                </Text>
+              </View>
 
-          {// 3rd — right }
-          <View style={[styles.podiumItem, { marginTop: 50 }]}>
-            <Text style={{ fontSize: 20 }}>{RANK_LABELS[2]}</Text>
-            <View style={[styles.podiumAv, { backgroundColor: top3[2]?.bg || COLORS.primaryLight }]}>
-              <Text style={{ fontSize: 13, fontWeight: FONTS.heavy, color: top3[2]?.fg || COLORS.primaryDark }}>
-                {top3[2]?.initials}
+              <Text style={styles.podiumName}>
+                {p?.name?.split(' ')[0]}
+              </Text>
+
+              <Text style={[
+                styles.podiumPts,
+                { color: RANK_COLORS[i] }
+              ]}>
+                {p?.pts}
               </Text>
             </View>
-            <Text style={styles.podiumName}>{top3[2]?.name?.split(' ')[0]}</Text>
-            <Text style={[styles.podiumPts, { color: RANK_COLORS[2] }]}>{top3[2]?.pts}</Text>
-          </View>
+          ))}
         </View>
 
         {// Full list }
@@ -103,19 +110,31 @@ export default function LeaderboardScreen({ navigate }) {
               <Text style={[styles.rank, i < 3 && { color: RANK_COLORS[i] }]}>
                 #{i + 1}
               </Text>
+
               <View style={[styles.av, { backgroundColor: person.bg }]}>
-                <Text style={{ fontSize: 11, fontWeight: FONTS.heavy, color: person.fg }}>
+                <Text style={{
+                  fontSize: 11,
+                  fontWeight: FONTS.heavy,
+                  color: person.fg
+                }}>
                   {person.initials}
                 </Text>
               </View>
+
               <View style={styles.nameCol}>
                 <Text style={[styles.name, person.you && styles.nameYou]}>
                   {person.name}{person.you ? ' (you)' : ''}
                 </Text>
+
                 {person.branch && (
                   <Text style={styles.branch}>{person.branch}</Text>
                 )}
+
+                {person.year && (
+                  <Text style={styles.branch}>{person.year}</Text>
+                )}
               </View>
+
               <Text style={[styles.pts, i < 3 && { color: RANK_COLORS[i] }]}>
                 {person.pts} pts
               </Text>
@@ -123,14 +142,14 @@ export default function LeaderboardScreen({ navigate }) {
           ))}
         </View>
 
-        <View style={{ height: SPACING.xxl }} />
       </ScrollView>
 
-      <BottomNav active="leaderboard" navigate={navigate} />
+      {// Bottom Nav }
+      <BottomNav active="leaderboard" navigation={navigation} />
+
     </SafeAreaView>
   );
 }
-
 const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: COLORS.bgPage },
 
@@ -213,18 +232,25 @@ import {
   StyleSheet, SafeAreaView,
 } from 'react-native';
 import { COLORS, FONTS, SPACING, RADIUS } from '../constants/theme';
-import { BRANCH_LEADERBOARD, YEAR_LEADERBOARD, CURRENT_USER } from '../constants/data';
+import { BRANCH_LEADERBOARD, YEAR_LEADERBOARD } from '../constants/data';
 import BottomNav from '../components/BottomNav';
 
 const RANK_COLORS = ['#EF9F27', '#9eafb8', '#c49060'];
 const RANK_LABELS = ['🥇', '🥈', '🥉'];
 
-export default function LeaderboardScreen({ navigation }) {
+export default function LeaderboardScreen({ navigation, route }) {
+
+  const user = route.params?.user;
+  if (!user) return null;
+
   const [tab, setTab] = useState('branch');
   const data = tab === 'branch' ? BRANCH_LEADERBOARD : YEAR_LEADERBOARD;
 
-  const top3   = data.slice(0, 3);
-  const myRank = data.findIndex(p => p.you) + 1;
+  const top3 = data.slice(0, 3);
+
+  // ✅ safer rank calculation
+  const index = data.findIndex(p => p.id === user.id);
+  const myRank = index !== -1 ? index + 1 : (user.rank || 0);
 
   return (
     <SafeAreaView style={styles.safe}>
@@ -239,7 +265,7 @@ export default function LeaderboardScreen({ navigation }) {
       <View style={styles.myRankBanner}>
         <Text style={styles.myRankLabel}>Your rank</Text>
         <Text style={styles.myRankNum}>#{myRank}</Text>
-        <Text style={styles.myRankPts}>{CURRENT_USER.pts} pts</Text>
+        <Text style={styles.myRankPts}>{user.pts || 0} pts</Text>
       </View>
 
       {/* Tabs */}
@@ -312,7 +338,7 @@ export default function LeaderboardScreen({ navigation }) {
               key={person.id}
               style={[
                 styles.row,
-                person.you && styles.rowYou,
+                person.id === user.id && styles.rowYou,
                 i === data.length - 1 && { borderBottomWidth: 0 },
               ]}
             >
@@ -331,8 +357,11 @@ export default function LeaderboardScreen({ navigation }) {
               </View>
 
               <View style={styles.nameCol}>
-                <Text style={[styles.name, person.you && styles.nameYou]}>
-                  {person.name}{person.you ? ' (you)' : ''}
+                <Text style={[
+                  styles.name,
+                  person.id === user.id && styles.nameYou
+                ]}>
+                  {person.name}{person.id === user.id ? ' (you)' : ''}
                 </Text>
 
                 {person.branch && (
@@ -354,11 +383,12 @@ export default function LeaderboardScreen({ navigation }) {
       </ScrollView>
 
       {/* Bottom Nav */}
-      <BottomNav active="leaderboard" navigation={navigation} />
+      <BottomNav active="leaderboard" navigation={navigation} user={user} />
 
     </SafeAreaView>
   );
 }
+
 const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: COLORS.bgPage },
 
