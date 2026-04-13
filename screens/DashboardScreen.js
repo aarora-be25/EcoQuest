@@ -35,7 +35,7 @@ export default function DashboardScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.safe}>
 
-      {// Header }
+      // Header }
       <View style={styles.header}>
         <View style={styles.headerTop}>
           <View style={styles.userRow}>
@@ -81,14 +81,14 @@ export default function DashboardScreen({ navigation }) {
         </View>
       </View>
 
-      {// Body }
+      // Body }
       <ScrollView
         style={styles.body}
         contentContainerStyle={{ paddingBottom: 90 }}
         showsVerticalScrollIndicator={false}
       >
 
-        {// Stats }
+        // Stats }
         <Text style={styles.sectionLabel}>Today's overview</Text>
         <View style={styles.statGrid}>
           <View style={styles.statCard}>
@@ -104,7 +104,7 @@ export default function DashboardScreen({ navigation }) {
           </View>
         </View>
 
-        {// Progress }
+        // Progress }
         <View style={styles.progressCard}>
           <View style={styles.progressHeader}>
             <Text style={styles.progressTitle}>Daily progress</Text>
@@ -118,13 +118,13 @@ export default function DashboardScreen({ navigation }) {
           </View>
         </View>
 
-        {// Tasks }
+        // Tasks }
         <Text style={styles.sectionLabel}>Today's tasks</Text>
         {tasks.map(task => (
           <TaskCard key={task.id} task={task} onPress={handleTaskPress} />
         ))}
 
-        {// Leaderboard }
+        // Leaderboard }
         <Text style={styles.sectionLabel}>Top 3 this week</Text>
         <TouchableOpacity
           style={styles.lbCard}
@@ -177,7 +177,7 @@ export default function DashboardScreen({ navigation }) {
 
       </ScrollView>
 
-      {// Bottom Navigation }
+      // Bottom Navigation }
       <BottomNav active="dashboard" navigation={navigation} />
 
     </SafeAreaView>
@@ -218,7 +218,7 @@ export default function DashboardScreen({ navigation, route }) {
   return (
     <SafeAreaView style={styles.safe}>
 
-      {// Header }
+      // Header 
       <View style={styles.header}>
         <View style={styles.headerTop}>
 
@@ -269,14 +269,14 @@ export default function DashboardScreen({ navigation, route }) {
         </View>
       </View>
 
-      {// Body }
+      // Body
       <ScrollView
         style={styles.body}
         contentContainerStyle={{ paddingBottom: 90 }}
         showsVerticalScrollIndicator={false}
       >
 
-        {// Stats }
+        // Stats
         <Text style={styles.sectionLabel}>Today's overview</Text>
 
         <View style={styles.statGrid}>
@@ -293,7 +293,7 @@ export default function DashboardScreen({ navigation, route }) {
           </View>
         </View>
 
-        {// Progress }
+        // Progress 
         <View style={styles.progressCard}>
           <View style={styles.progressHeader}>
             <Text style={styles.progressTitle}>Daily progress</Text>
@@ -307,13 +307,13 @@ export default function DashboardScreen({ navigation, route }) {
           </View>
         </View>
 
-        {// Tasks }
+        // Tasks }
         <Text style={styles.sectionLabel}>Today's tasks</Text>
         {tasks.map(task => (
           <TaskCard key={task.id} task={task} onPress={handleTaskPress} />
         ))}
 
-        {// Leaderboard }
+        // Leaderboard }
         <Text style={styles.sectionLabel}>Top 3 this week</Text>
 
         <TouchableOpacity
