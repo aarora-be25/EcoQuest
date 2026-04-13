@@ -8,7 +8,7 @@ export const CURRENT_USER = {
   email:    'akumar4_be25@thapar.edu',
   branch:   'COE',
   year:     'Year 1',
-  section:  'A',
+  rollNo:  '1025045283',
   pts:      320,
   rank:     3,
   tasksCompleted: 12,
