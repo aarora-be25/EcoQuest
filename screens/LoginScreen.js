@@ -38,6 +38,22 @@ export default function LoginScreen({ navigation, route }) {
     // simulate API
     setTimeout(() => {
       setLoading(false);
+      
+    const userData = {
+      name: name || 'User',
+      email: studentId,
+      branch: branch || 'COE',
+      rollNo: rollNo || 'N/A',
+      year: '1st Year',
+      pts: 0,
+      rank: 50,
+      initials: (name || 'U')
+        .split(' ')
+        .map(w => w[0])
+        .join('')
+        .toUpperCase(),
+    };
+
       navigation.navigate('dashboard');
     }, 1200);
   };
