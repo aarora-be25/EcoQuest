@@ -21,7 +21,7 @@ export default function HomeScreen({ navigate }) {
     <SafeAreaView style={styles.safe}>
       <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
 
-        {//Hero }
+        //Hero }
         <LinearGradient
   colors={[COLORS.primarySoft, COLORS.primaryDark]}
   style={styles.hero}
@@ -41,7 +41,7 @@ export default function HomeScreen({ navigate }) {
           </Text>
         </LinearGradient>
 
-        {// Features }
+        // Features }
         <View style={styles.section}>
           <Text style={styles.sectionLabel}>How it works</Text>
           {FEATURES.map((f, i) => (
@@ -57,7 +57,7 @@ export default function HomeScreen({ navigate }) {
           ))}
         </View>
 
-        {// Stats strip }
+        // Stats strip }
         <View style={styles.statsStrip}>
           {[['240+', 'Students'], ['18', 'Eco tasks'], ['1st year', 'UEN008']].map(([num, lbl], i) => (
             <View key={i} style={styles.statItem}>
@@ -67,7 +67,7 @@ export default function HomeScreen({ navigate }) {
           ))}
         </View>
 
-        {// CTAs }
+        // CTAs }
         <View style={styles.ctas}>
           <TouchableOpacity style={styles.btnPrimary} onPress={() => navigate('login', { mode: 'signup' })} activeOpacity={0.85}>
             <Text style={styles.btnPrimaryText}>Login/Sign up</Text>
