@@ -40,7 +40,7 @@ export default function ProfileScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.safe}>
 
-      {// Header }
+      // Header }
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Profile</Text>
         <View style={{ width: 40 }} />
@@ -52,7 +52,7 @@ export default function ProfileScreen({ navigation }) {
         contentContainerStyle={{ paddingBottom: 100 }}
       >
 
-        {// Profile }
+        // Profile }
         <View style={styles.profileCard}>
           <View style={styles.avatarLarge}>
             <Text style={styles.avatarText}>{CURRENT_USER.initials}</Text>
@@ -74,7 +74,7 @@ export default function ProfileScreen({ navigation }) {
           </View>
         </View>
 
-        {// Stats }
+        // Stats }
         <View style={styles.statsRow}>
           {[
             [CURRENT_USER.pts, 'Total pts'],
@@ -88,7 +88,7 @@ export default function ProfileScreen({ navigation }) {
           ))}
         </View>
 
-        {// Completed tasks }
+        // Completed tasks }
         <Text style={styles.sectionLabel}>Completed tasks</Text>
         {COMPLETED.length === 0 ? (
           <View style={styles.emptyCard}>
@@ -116,7 +116,7 @@ export default function ProfileScreen({ navigation }) {
           </View>
         )}
 
-        {// Achievements }
+        // Achievements }
         <Text style={styles.sectionLabel}>Achievements</Text>
         <View style={styles.achieveGrid}>
           {ACHIEVEMENTS.map((a, i) => (
@@ -152,7 +152,7 @@ export default function ProfileScreen({ navigation }) {
           ))}
         </View>
 
-        {// Settings }
+        // Settings }
         <Text style={styles.sectionLabel}>Account</Text>
         <View style={styles.settingsCard}>
           {[
@@ -184,7 +184,7 @@ export default function ProfileScreen({ navigation }) {
           ))}
         </View>
 
-        {// Logout }
+        // Logout }
         <TouchableOpacity
           style={styles.logoutBtn}
           onPress={handleLogout}
@@ -195,7 +195,7 @@ export default function ProfileScreen({ navigation }) {
 
       </ScrollView>
 
-      {// Bottom Nav }
+      // Bottom Nav }
       <BottomNav active="profile" navigation={navigation} />
 
     </SafeAreaView>
