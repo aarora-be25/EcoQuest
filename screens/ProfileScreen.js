@@ -1,3 +1,4 @@
+/*
 import React from 'react';
 import {
   View, Text, ScrollView, TouchableOpacity,
@@ -39,7 +40,7 @@ export default function ProfileScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.safe}>
 
-      {/* Header */}
+      {// Header }
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Profile</Text>
         <View style={{ width: 40 }} />
@@ -51,7 +52,7 @@ export default function ProfileScreen({ navigation }) {
         contentContainerStyle={{ paddingBottom: 100 }}
       >
 
-        {/* Profile */}
+        {// Profile }
         <View style={styles.profileCard}>
           <View style={styles.avatarLarge}>
             <Text style={styles.avatarText}>{CURRENT_USER.initials}</Text>
@@ -73,7 +74,7 @@ export default function ProfileScreen({ navigation }) {
           </View>
         </View>
 
-        {/* Stats */}
+        {// Stats }
         <View style={styles.statsRow}>
           {[
             [CURRENT_USER.pts, 'Total pts'],
@@ -87,8 +88,218 @@ export default function ProfileScreen({ navigation }) {
           ))}
         </View>
 
+        {// Completed tasks }
+        <Text style={styles.sectionLabel}>Completed tasks</Text>
+        {COMPLETED.length === 0 ? (
+          <View style={styles.emptyCard}>
+            <Text style={{ fontSize: 30 }}>🌱</Text>
+            <Text style={styles.emptyText}>
+              No completed tasks yet. Start your eco journey!
+            </Text>
+          </View>
+        ) : (
+          <View style={styles.completedCard}>
+            {COMPLETED.map((t, i) => (
+              <View
+                key={t.id}
+                style={[
+                  styles.completedRow,
+                  i === COMPLETED.length - 1 && { borderBottomWidth: 0 }
+                ]}
+              >
+                <Text style={{ fontSize: 18 }}>{t.icon}</Text>
+                <Text style={styles.completedName}>{t.name}</Text>
+                <Text style={styles.completedPts}>+{t.pts} pts</Text>
+                <Text style={styles.completedCheck}>✓</Text>
+              </View>
+            ))}
+          </View>
+        )}
+
+        {// Achievements }
+        <Text style={styles.sectionLabel}>Achievements</Text>
+        <View style={styles.achieveGrid}>
+          {ACHIEVEMENTS.map((a, i) => (
+            <View
+              key={i}
+              style={[
+                styles.achieveCard,
+                !a.unlocked && styles.achieveLocked
+              ]}
+            >
+              <Text style={{ fontSize: 28, opacity: a.unlocked ? 1 : 0.3 }}>
+                {a.icon}
+              </Text>
+
+              <Text style={[
+                styles.achieveLabel,
+                !a.unlocked && styles.achieveTextLocked
+              ]}>
+                {a.label}
+              </Text>
+
+              <Text style={[
+                styles.achieveDesc,
+                !a.unlocked && styles.achieveTextLocked
+              ]}>
+                {a.desc}
+              </Text>
+
+              {!a.unlocked && (
+                <Text style={styles.lockedBadge}>Locked</Text>
+              )}
+            </View>
+          ))}
+        </View>
+
+        {// Settings }
+        <Text style={styles.sectionLabel}>Account</Text>
+        <View style={styles.settingsCard}>
+          {[
+            { label: 'Edit profile', icon: '✏️' },
+            { label: 'Change password', icon: '🔒' },
+            {
+              label: 'Notifications',
+              icon: '🔔',
+              onPress: () => navigation.navigate('notifications')
+            },
+            { label: 'About EcoQuest', icon: 'ℹ️' },
+          ].map((item, i, arr) => (
+            <TouchableOpacity
+              key={i}
+              style={[
+                styles.settingsRow,
+                i === arr.length - 1 && { borderBottomWidth: 0 }
+              ]}
+              onPress={
+                item.onPress ||
+                (() => Alert.alert(item.label, 'Coming soon!'))
+              }
+              activeOpacity={0.7}
+            >
+              <Text style={{ fontSize: 18 }}>{item.icon}</Text>
+              <Text style={styles.settingsLabel}>{item.label}</Text>
+              <Text style={styles.settingsArrow}>›</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+
+        {// Logout }
+        <TouchableOpacity
+          style={styles.logoutBtn}
+          onPress={handleLogout}
+          activeOpacity={0.85}
+        >
+          <Text style={styles.logoutText}>Log out</Text>
+        </TouchableOpacity>
+
+      </ScrollView>
+
+      {// Bottom Nav }
+      <BottomNav active="profile" navigation={navigation} />
+
+    </SafeAreaView>
+  );
+}
+*/
+
+import React from 'react';
+import {
+  View, Text, ScrollView, TouchableOpacity,
+  StyleSheet, SafeAreaView, Alert,
+} from 'react-native';
+import { COLORS, FONTS, SPACING, RADIUS } from '../constants/theme';
+import { TASKS } from '../constants/data';
+import BottomNav from '../components/BottomNav';
+
+const COMPLETED = TASKS.filter(t => t.done);
+
+const ACHIEVEMENTS = [
+  { icon: '🌱', label: 'First step', desc: 'Completed your first task', unlocked: true },
+  { icon: '🔥', label: 'On a roll', desc: 'Completed 3 tasks in a day', unlocked: true },
+  { icon: '🏆', label: 'Top 3', desc: 'Reached top 3 in branch', unlocked: true },
+  { icon: '🌳', label: 'Tree hugger', desc: 'Planted 5 saplings', unlocked: false },
+  { icon: '⚡', label: 'Energy saver', desc: 'Saved energy 10 days', unlocked: false },
+  { icon: '🥇', label: 'Eco champion', desc: 'Rank #1 for a week', unlocked: false },
+];
+
+export default function ProfileScreen({ navigation, route }) {
+
+  const user = route.params?.user;
+
+  if (!user) return null;
+
+  const handleLogout = () => {
+    Alert.alert('Log out', 'Are you sure you want to log out?', [
+      { text: 'Cancel', style: 'cancel' },
+      {
+        text: 'Log out',
+        style: 'destructive',
+        onPress: () =>
+          navigation.reset({
+            index: 0,
+            routes: [{ name: 'home' }],
+          }),
+      },
+    ]);
+  };
+
+  return (
+    <SafeAreaView style={styles.safe}>
+
+      {/* Header */}
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>Profile</Text>
+        <View style={{ width: 40 }} />
+      </View>
+
+      <ScrollView
+        style={styles.body}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 100 }}
+      >
+
+        {/* Profile */}
+        <View style={styles.profileCard}>
+          <View style={styles.avatarLarge}>
+            <Text style={styles.avatarText}>
+              {user.initials || user.name?.slice(0,2).toUpperCase()}
+            </Text>
+          </View>
+
+          <Text style={styles.profileName}>{user.name}</Text>
+          <Text style={styles.profileSub}>{user.email}</Text>
+
+          <View style={styles.tagRow}>
+            <View style={styles.tag}>
+              <Text style={styles.tagText}>{user.branch}</Text>
+            </View>
+            <View style={styles.tag}>
+              <Text style={styles.tagText}>{user.year || '1st Year'}</Text>
+            </View>
+            <View style={styles.tag}>
+              <Text style={styles.tagText}>Roll No. {user.rollNo}</Text>
+            </View>
+          </View>
+        </View>
+
+        {/* Stats */}
+        <View style={styles.statsRow}>
+          {[
+            [user.pts || 0, 'Total pts'],
+            [`#${user.rank || 0}`, 'Branch rank'],
+            [COMPLETED.length, 'Tasks done'],
+          ].map(([val, lbl], i) => (
+            <View key={i} style={styles.statBox}>
+              <Text style={styles.statVal}>{val}</Text>
+              <Text style={styles.statLbl}>{lbl}</Text>
+            </View>
+          ))}
+        </View>
+
         {/* Completed tasks */}
         <Text style={styles.sectionLabel}>Completed tasks</Text>
+
         {COMPLETED.length === 0 ? (
           <View style={styles.emptyCard}>
             <Text style={{ fontSize: 30 }}>🌱</Text>
@@ -194,13 +405,11 @@ export default function ProfileScreen({ navigation }) {
 
       </ScrollView>
 
-      {/* Bottom Nav */}
       <BottomNav active="profile" navigation={navigation} />
 
     </SafeAreaView>
   );
 }
-
 const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: COLORS.bgPage },
 
