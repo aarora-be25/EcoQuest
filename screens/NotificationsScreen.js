@@ -21,7 +21,7 @@ export default function NotificationsScreen({ navigate }) {
 
   return (
     <SafeAreaView style={styles.safe}>
-        {// Back }
+        // Back }
         <TouchableOpacity style={styles.backBtn} onPress={() => navigate('dashboard')} activeOpacity={0.7}>
           <Text style={styles.backText}>← Back</Text>
         </TouchableOpacity>
