@@ -294,7 +294,7 @@ export default function ProfileScreen({ navigation, route }) {
               <Text style={styles.statVal}>{val}</Text>
               <Text style={styles.statLbl}>{lbl}</Text>
             </View>
-          ))}
+          ))]}
         </View>
 
         {/* Completed tasks */}
