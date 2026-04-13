@@ -306,7 +306,7 @@ export default function ProfileScreen({ navigation }) {
               <Text style={styles.tagText}>{CURRENT_USER.year}</Text>
             </View>
             <View style={styles.tag}>
-              <Text style={styles.tagText}>Section {CURRENT_USER.section}</Text>
+              <Text style={styles.tagText}>Roll No. {CURRENT_USER.rollNo}</Text>
             </View>
           </View>
         </View>
