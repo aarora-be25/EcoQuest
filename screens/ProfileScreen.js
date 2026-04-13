@@ -212,7 +212,7 @@ import { COLORS, FONTS, SPACING, RADIUS } from '../constants/theme';
 import { TASKS } from '../constants/data';
 import BottomNav from '../components/BottomNav';
 
-const COMPLETED = TASKS.filter(t => t.done);
+const COMPLETED = user.tasks || TASKS.filter(t => t.done);
 
 const ACHIEVEMENTS = [
   { icon: '🌱', label: 'First step', desc: 'Completed your first task', unlocked: true },
@@ -288,7 +288,7 @@ export default function ProfileScreen({ navigation, route }) {
           {[
             [user.pts || 0, 'Total pts'],
             [`#${user.rank || 0}`, 'Branch rank'],
-            [COMPLETED.length, 'Tasks done'],
+            [[(user.tasks?.filter(t => t.done).length) || COMPLETED.length, 'Tasks done'],
           ].map(([val, lbl], i) => (
             <View key={i} style={styles.statBox}>
               <Text style={styles.statVal}>{val}</Text>
@@ -371,7 +371,7 @@ export default function ProfileScreen({ navigation, route }) {
             {
               label: 'Notifications',
               icon: '🔔',
-              onPress: () => navigation.navigate('notifications')
+              onPress: () => navigation.navigate('notifications', { user })
             },
             { label: 'About EcoQuest', icon: 'ℹ️' },
           ].map((item, i, arr) => (
@@ -405,7 +405,7 @@ export default function ProfileScreen({ navigation, route }) {
 
       </ScrollView>
 
-      <BottomNav active="profile" navigation={navigation} />
+      <BottomNav active="profile" navigation={navigation} user={user} />
 
     </SafeAreaView>
   );
