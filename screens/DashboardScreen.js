@@ -182,3 +182,234 @@ export default function DashboardScreen({ navigation }) {
     </SafeAreaView>
   );
 }
+const styles = StyleSheet.create({
+  safe: { flex: 1, backgroundColor: COLORS.bgPage },
+
+  header: {
+    backgroundColor: COLORS.primary,
+    padding: SPACING.base,
+    paddingBottom: SPACING.lg
+  },
+
+  headerTop: {
+    paddingTop: SPACING.lg,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: SPACING.md
+  },
+
+  userRow: { flexDirection: 'row', alignItems: 'center', gap: SPACING.sm },
+
+  avatar: {
+    width: 44, height: 44, borderRadius: 22,
+    backgroundColor: COLORS.primarySoft,
+    alignItems: 'center', justifyContent: 'center',
+  },
+
+  avatarText: {
+    fontSize: 14,
+    fontWeight: FONTS.heavy,
+    color: COLORS.primaryDark
+  },
+
+  greeting: { fontSize: 11, color: COLORS.primarySoft },
+
+  userName: {
+    fontSize: 16,
+    fontWeight: FONTS.heavy,
+    color: COLORS.white
+  },
+
+  notifBtn: { position: 'relative', padding: SPACING.xs },
+
+  notifDot: {
+    position: 'absolute',
+    top: 4, right: 4,
+    width: 8, height: 8,
+    borderRadius: 4,
+    backgroundColor: COLORS.accent,
+    borderWidth: 2,
+    borderColor: COLORS.primary,
+  },
+
+  rankPill: {
+    backgroundColor: 'rgba(255,255,255,0.15)',
+    borderRadius: RADIUS.lg,
+    padding: SPACING.md,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: SPACING.md,
+  },
+
+  rankSub: {
+    fontSize: 10,
+    color: COLORS.primarySoft,
+    marginBottom: 2
+  },
+
+  rankNum: {
+    fontSize: 22,
+    fontWeight: FONTS.heavy,
+    color: COLORS.accent
+  },
+
+  ptsNum: {
+    fontSize: 18,
+    fontWeight: FONTS.heavy,
+    color: COLORS.accent
+  },
+
+  dividerV: {
+    width: 1,
+    height: 36,
+    backgroundColor: 'rgba(255,255,255,0.2)'
+  },
+
+  branchTag: {
+    marginLeft: 'auto',
+    fontSize: 10,
+    color: COLORS.primarySoft,
+    textAlign: 'right',
+    lineHeight: 16
+  },
+
+  body: { flex: 1, padding: SPACING.base },
+
+  sectionLabel: {
+    fontSize: 11,
+    fontWeight: FONTS.heavy,
+    color: COLORS.textMuted,
+    letterSpacing: 0.7,
+    textTransform: 'uppercase',
+    marginBottom: SPACING.sm,
+    marginTop: SPACING.base,
+  },
+
+  statGrid: {
+    flexDirection: 'row',
+    gap: SPACING.sm,
+    marginBottom: SPACING.sm
+  },
+
+  statCard: {
+    flex: 1,
+    backgroundColor: COLORS.bgCard,
+    borderRadius: RADIUS.md,
+    borderWidth: 1,
+    borderColor: COLORS.border,
+    padding: SPACING.md,
+  },
+
+  statNum: {
+    fontSize: 30,
+    fontWeight: FONTS.heavy,
+    lineHeight: 36
+  },
+
+  statSub: {
+    fontSize: 11,
+    color: COLORS.textMuted,
+    marginTop: 3
+  },
+
+  progressCard: {
+    backgroundColor: COLORS.bgCard,
+    borderRadius: RADIUS.md,
+    borderWidth: 1,
+    borderColor: COLORS.border,
+    padding: SPACING.md,
+    marginBottom: SPACING.sm,
+  },
+
+  progressHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: SPACING.sm
+  },
+
+  progressTitle: {
+    fontSize: 13,
+    fontWeight: FONTS.bold,
+    color: COLORS.primaryDark
+  },
+
+  progressCount: {
+    fontSize: 12,
+    color: COLORS.textMuted
+  },
+
+  track: {
+    backgroundColor: COLORS.primaryLight,
+    borderRadius: RADIUS.pill,
+    height: 10,
+    overflow: 'hidden'
+  },
+
+  fill: {
+    backgroundColor: COLORS.primary,
+    height: '100%',
+    borderRadius: RADIUS.pill
+  },
+
+  lbCard: {
+    backgroundColor: COLORS.bgCard,
+    borderRadius: RADIUS.md,
+    borderWidth: 1,
+    borderColor: COLORS.border,
+    overflow: 'hidden',
+  },
+
+  lbRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: SPACING.sm,
+    padding: SPACING.md,
+    borderBottomWidth: 1,
+    borderBottomColor: COLORS.border,
+  },
+
+  lbRowYou: { backgroundColor: COLORS.primaryLight },
+
+  lbRank: {
+    fontSize: 12,
+    fontWeight: FONTS.heavy,
+    color: COLORS.textMuted,
+    width: 22
+  },
+
+  lbGold: { color: COLORS.accent },
+
+  lbAv: {
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+
+  lbName: {
+    flex: 1,
+    fontSize: 13,
+    color: COLORS.textPrimary
+  },
+
+  lbNameYou: {
+    fontWeight: FONTS.heavy,
+    color: COLORS.primaryDark
+  },
+
+  lbPts: {
+    fontSize: 12,
+    fontWeight: FONTS.heavy,
+    color: COLORS.primary
+  },
+
+  lbSeeAll: {
+    textAlign: 'center',
+    fontSize: 12,
+    fontWeight: FONTS.bold,
+    color: COLORS.primary,
+    padding: SPACING.md,
+  },
+});
