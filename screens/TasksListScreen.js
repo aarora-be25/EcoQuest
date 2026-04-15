@@ -40,10 +40,10 @@ export default function TasksListScreen({ navigation }) {
 
       <ScrollView
         showsVerticalScrollIndicator={false}
-        stickyHeaderIndices={[1]} // 👈 THIS MAKES FILTER STICK
+        stickyHeaderIndices={[1]} // THIS MAKES FILTER STICK
       >
 
-        // Header }
+        // Header 
         <View style={styles.header}>
           <Text style={styles.headerTitle}>Tasks</Text>
           <Text style={styles.headerSub}>
@@ -51,7 +51,7 @@ export default function TasksListScreen({ navigation }) {
           </Text>
         </View>
 
-        // Sticky Filter }
+        // Sticky Filter 
         <View style={styles.filterWrapper}>
           <ScrollView
             horizontal
@@ -81,7 +81,7 @@ export default function TasksListScreen({ navigation }) {
           </ScrollView>
         </View>
 
-        // Tasks }
+        // Tasks 
         <View style={styles.body}>
           <Text style={styles.countLabel}>
             {filtered.length} task{filtered.length !== 1 ? 's' : ''}
