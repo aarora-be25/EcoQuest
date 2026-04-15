@@ -56,7 +56,7 @@ export default function LoginScreen({ navigation, route }) {
           contentContainerStyle={{ paddingBottom: 100 }}
         >
 
-          // Back }
+          // Back 
           <TouchableOpacity
             style={styles.backBtn}
             onPress={() => navigation.goBack()}
@@ -65,7 +65,7 @@ export default function LoginScreen({ navigation, route }) {
             <Text style={styles.backText}>← Back</Text>
           </TouchableOpacity>
 
-          // Header }
+          // Header 
           <View style={styles.header}>
             <Text style={styles.logoEmoji}>🌱</Text>
 
@@ -80,7 +80,7 @@ export default function LoginScreen({ navigation, route }) {
             </Text>
           </View>
 
-          // Toggle }
+          // Toggle 
           <View style={styles.toggleRow}>
             {['login', 'signup'].map(m => (
               <TouchableOpacity
@@ -96,7 +96,7 @@ export default function LoginScreen({ navigation, route }) {
             ))}
           </View>
 
-          // Form }
+          // Form 
           <View style={styles.form}>
 
             {mode === 'signup' && (
