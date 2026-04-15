@@ -57,12 +57,12 @@ export default function TaskDetailScreen({ navigation, route }) {
     <SafeAreaView style={styles.safe}>
       <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
 
-        // Back }
+        // Back 
         <TouchableOpacity style={styles.backBtn} onPress={() => navigation.goBack()}>
           <Text style={styles.backText}>← Back</Text>
         </TouchableOpacity>
 
-        // Hero }
+        // Hero 
         <View style={styles.hero}>
           <View style={styles.taskIconCircle}>
             <Text style={{ fontSize: 48 }}>{task.icon}</Text>
@@ -80,13 +80,13 @@ export default function TaskDetailScreen({ navigation, route }) {
 
         <View style={styles.body}>
 
-          // Description }
+          // Description 
           <View style={styles.card}>
             <Text style={styles.cardTitle}>What to do</Text>
             <Text style={styles.cardBody}>{task.description}</Text>
           </View>
 
-          // Photo }
+          // Photo 
           <Text style={styles.sectionLabel}>Step 1 — Take a photo</Text>
 
           <TouchableOpacity
@@ -103,7 +103,7 @@ export default function TaskDetailScreen({ navigation, route }) {
             )}
           </TouchableOpacity>
 
-          // Submit }
+          // Submit 
           <Text style={styles.sectionLabel}>Step 2 — Submit</Text>
 
           <TouchableOpacity
