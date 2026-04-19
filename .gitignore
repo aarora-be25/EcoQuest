@@ -7,3 +7,4 @@ dist/
 *.key
 *.mobileprovision
 web-build/
+firebaseConfig.js
