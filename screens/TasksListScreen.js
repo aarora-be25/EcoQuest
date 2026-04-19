@@ -11,7 +11,7 @@ import BottomNav from '../components/BottomNav';
 const CATEGORIES = ['All', 'Waste', 'Transport', 'Energy', 'Water', 'Nature'];
 
 export default function TasksListScreen({ navigation }) {
-  const [tasks, setTasks]   = useState(TASKS);
+  const [tasks, setTasks] = useState(TASKS);
   const [filter, setFilter] = useState('All');
 
   const filtered = filter === 'All'
@@ -21,15 +21,21 @@ export default function TasksListScreen({ navigation }) {
   const doneCnt = tasks.filter(t => t.done).length;
 
   const handlePress = (task) => {
+    // Blocked: already done or flagged
     if (task.done || task.flagged) return;
 
+    // Blocked: coming soon tasks — show info instead of navigating
+    if (!task.live) {
+      alert(`🔒 "${task.name}" is coming soon!\n\nThis task will be available in the next update.`);
+      return;
+    }
+
+    // Live task — go to TaskDetailScreen
     navigation.navigate('taskDetail', {
       task,
       onComplete: (taskId) => {
         setTasks(prev =>
-          prev.map(t =>
-            t.id === taskId ? { ...t, done: true } : t
-          )
+          prev.map(t => t.id === taskId ? { ...t, done: true } : t)
         );
       },
     });
@@ -37,13 +43,12 @@ export default function TasksListScreen({ navigation }) {
 
   return (
     <SafeAreaView style={styles.safe}>
-
       <ScrollView
         showsVerticalScrollIndicator={false}
-        stickyHeaderIndices={[1]} // THIS MAKES FILTER STICK
+        stickyHeaderIndices={[1]}
       >
 
-        // Header 
+        {/* Header */}
         <View style={styles.header}>
           <Text style={styles.headerTitle}>Tasks</Text>
           <Text style={styles.headerSub}>
@@ -51,7 +56,7 @@ export default function TasksListScreen({ navigation }) {
           </Text>
         </View>
 
-        // Sticky Filter 
+        {/* Sticky Filter */}
         <View style={styles.filterWrapper}>
           <ScrollView
             horizontal
@@ -61,19 +66,11 @@ export default function TasksListScreen({ navigation }) {
             {CATEGORIES.map(cat => (
               <TouchableOpacity
                 key={cat}
-                style={[
-                  styles.chip,
-                  filter === cat && styles.chipActive
-                ]}
+                style={[styles.chip, filter === cat && styles.chipActive]}
                 onPress={() => setFilter(cat)}
                 activeOpacity={0.8}
               >
-                <Text
-                  style={[
-                    styles.chipText,
-                    filter === cat && styles.chipTextActive
-                  ]}
-                >
+                <Text style={[styles.chipText, filter === cat && styles.chipTextActive]}>
                   {cat}
                 </Text>
               </TouchableOpacity>
@@ -81,10 +78,14 @@ export default function TasksListScreen({ navigation }) {
           </ScrollView>
         </View>
 
-        // Tasks 
+        {/* Tasks */}
         <View style={styles.body}>
           <Text style={styles.countLabel}>
             {filtered.length} task{filtered.length !== 1 ? 's' : ''}
+            {' · '}
+            <Text style={styles.liveLabel}>
+              {filtered.filter(t => t.live).length} active
+            </Text>
           </Text>
 
           {filtered.length === 0 ? (
@@ -97,11 +98,15 @@ export default function TasksListScreen({ navigation }) {
             </View>
           ) : (
             filtered.map(task => (
-              <TaskCard
-                key={task.id}
-                task={task}
-                onPress={handlePress}
-              />
+              <View key={task.id}>
+                <TaskCard task={task} onPress={handlePress} />
+                {/* Coming Soon badge — shown below card if not live */}
+                {!task.live && (
+                  <View style={styles.comingSoonBadge}>
+                    <Text style={styles.comingSoonText}>🔒 Coming soon</Text>
+                  </View>
+                )}
+              </View>
             ))
           )}
 
@@ -124,89 +129,48 @@ const styles = StyleSheet.create({
     paddingTop: SPACING.xxl,
     paddingBottom: SPACING.sm,
   },
-  headerTitle: {
-    fontSize: 22,
-    fontWeight: FONTS.heavy,
-    color: COLORS.white,
-  },
-  headerSub: {
-    fontSize: 13,
-    color: COLORS.primarySoft,
-    marginTop: 3,
-  },
+  headerTitle: { fontSize: 22, fontWeight: FONTS.heavy, color: COLORS.white },
+  headerSub:   { fontSize: 13, color: COLORS.primarySoft, marginTop: 3 },
 
-  // 👇 IMPORTANT: wrapper needed for sticky bg
-  filterWrapper: {
-    backgroundColor: COLORS.primary,
-  },
-
+  filterWrapper: { backgroundColor: COLORS.primary },
   filterRow: {
     paddingHorizontal: SPACING.base,
     paddingBottom: SPACING.sm,
     gap: SPACING.sm,
   },
 
-  /*
   chip: {
     paddingHorizontal: SPACING.sm,
     paddingVertical: 6,
     borderRadius: RADIUS.pill,
-    backgroundColor: 'rgba(255,255,255,0.18)',
+    backgroundColor: COLORS.primaryLight,
   },
-  chipActive: { backgroundColor: COLORS.white },
-  chipText: {
-    fontSize: 12,
-    fontWeight: FONTS.bold,
-    color: 'rgba(255,255,255,0.8)',
-  },
+  chipActive:     { backgroundColor: COLORS.white, borderWidth: 1, borderColor: COLORS.primary },
+  chipText:       { fontSize: 12, fontWeight: FONTS.bold, color: COLORS.primaryDark },
   chipTextActive: { color: COLORS.primary },
-*/
-  chip: {
-  paddingHorizontal: SPACING.sm,
-  paddingVertical: 6,
-  borderRadius: RADIUS.pill,
-  backgroundColor: COLORS.primaryLight,
-},
 
-chipActive: {
-  backgroundColor: COLORS.white,
-  borderWidth: 1,
-  borderColor: COLORS.primary,
-},
+  body: { padding: SPACING.base },
 
-chipText: {
-  fontSize: 12,
-  fontWeight: FONTS.bold,
-  color: COLORS.primaryDark,
-},
+  countLabel: { fontSize: 11, color: COLORS.textMuted, marginBottom: SPACING.sm },
+  liveLabel:  { color: COLORS.primary, fontWeight: FONTS.bold },
 
-chipTextActive: {
-  color: COLORS.primary,
-},
-  
-  body: {
-    padding: SPACING.base,
-  },
-
-  countLabel: {
-    fontSize: 11,
-    color: COLORS.textMuted,
+  comingSoonBadge: {
+    marginTop: -SPACING.sm,
     marginBottom: SPACING.sm,
-  },
-
-  emptyState: {
+    marginHorizontal: 2,
+    backgroundColor: COLORS.bgCard,
+    borderWidth: 1,
+    borderColor: COLORS.border,
+    borderTopWidth: 0,
+    borderBottomLeftRadius: RADIUS.md,
+    borderBottomRightRadius: RADIUS.md,
+    paddingVertical: 6,
+    paddingHorizontal: SPACING.md,
     alignItems: 'center',
-    paddingVertical: SPACING.xxl,
-    gap: SPACING.sm,
   },
-  emptyTitle: {
-    fontSize: 16,
-    fontWeight: FONTS.heavy,
-    color: COLORS.textPrimary,
-  },
-  emptyDesc: {
-    fontSize: 12,
-    color: COLORS.textMuted,
-    textAlign: 'center',
-  },
+  comingSoonText: { fontSize: 11, color: COLORS.textMuted, fontWeight: FONTS.bold },
+
+  emptyState: { alignItems: 'center', paddingVertical: SPACING.xxl, gap: SPACING.sm },
+  emptyTitle: { fontSize: 16, fontWeight: FONTS.heavy, color: COLORS.textPrimary },
+  emptyDesc:  { fontSize: 12, color: COLORS.textMuted, textAlign: 'center' },
 });
