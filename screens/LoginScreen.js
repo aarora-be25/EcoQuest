@@ -5,62 +5,43 @@ import {
   KeyboardAvoidingView, Platform, Alert,
 } from 'react-native';
 import { COLORS, FONTS, SPACING, RADIUS } from '../constants/theme';
-
-// ── Firebase ──────────────────────────────────────────────────────────────────
 import { loginUser, signUpUser } from '../services/authService';
 
 export default function LoginScreen({ navigation, route }) {
-  const [mode, setMode]       = useState('login');
-  const [email, setEmail]     = useState('');
-  const [rollNo, setRollNo]   = useState('');
+  const [mode, setMode]         = useState('login');
+  const [email, setEmail]       = useState('');
+  const [rollNo, setRollNo]     = useState('');
   const [password, setPassword] = useState('');
-  const [name, setName]       = useState('');
-  const [branch, setBranch]   = useState('');
-  const [year, setYear]       = useState('');
-  const [loading, setLoading] = useState(false);
+  const [name, setName]         = useState('');
+  const [branch, setBranch]     = useState('');
+  const [year, setYear]         = useState('');
+  const [loading, setLoading]   = useState(false);
 
   useEffect(() => {
     if (route?.params?.mode) setMode(route.params.mode);
   }, [route?.params]);
 
   const handleSubmit = async () => {
-    // ── Basic validation ────────────────────────────────────────────────────
     if (!email || !password) {
       Alert.alert('Missing fields', 'Please fill in all required fields.');
       return;
     }
-    if (mode === 'signup' && (!name || !branch || !year)) {
-      Alert.alert('Missing fields', 'Please fill in your name, branch and year.');
+    if (mode === 'signup' && (!name || !branch || !year || !rollNo)) {
+      Alert.alert('Missing fields', 'Please fill in all signup fields including Roll No.');
       return;
     }
 
     setLoading(true);
-
     try {
       if (mode === 'login') {
-        // ── LOGIN ─────────────────────────────────────────────────────────
         await loginUser(email, password);
-        navigation.replace('dashboard');   // replace so Back doesn't return to login
-
+        navigation.replace('dashboard');
       } else {
-        // ── SIGN UP ───────────────────────────────────────────────────────
-        await signUpUser({
-          email,
-          password,
-          name,
-          department: branch,   // your UI says "branch", Firestore stores as "department"
-          year,
-          rollNo,
-        });
+        await signUpUser({ email, password, name, department: branch, year, rollNo });
         navigation.replace('dashboard');
       }
-
     } catch (error) {
-      // Firebase gives readable error messages — show them directly
-      Alert.alert(
-        mode === 'login' ? 'Login Failed' : 'Sign Up Failed',
-        error.message
-      );
+      Alert.alert(mode === 'login' ? 'Login Failed' : 'Sign Up Failed', error.message);
     } finally {
       setLoading(false);
     }
@@ -78,13 +59,8 @@ export default function LoginScreen({ navigation, route }) {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{ paddingBottom: 100 }}
         >
-
           {/* Back */}
-          <TouchableOpacity
-            style={styles.backBtn}
-            onPress={() => navigation.goBack()}
-            activeOpacity={0.7}
-          >
+          <TouchableOpacity style={styles.backBtn} onPress={() => navigation.goBack()} activeOpacity={0.7}>
             <Text style={styles.backText}>← Back</Text>
           </TouchableOpacity>
 
@@ -119,7 +95,6 @@ export default function LoginScreen({ navigation, route }) {
 
           {/* Form */}
           <View style={styles.form}>
-
             {mode === 'signup' && (
               <>
                 <Text style={styles.label}>Full name</Text>
@@ -203,9 +178,7 @@ export default function LoginScreen({ navigation, route }) {
               activeOpacity={0.85}
             >
               <Text style={styles.submitText}>
-                {loading
-                  ? 'Please wait…'
-                  : mode === 'login' ? 'Log in' : 'Create account'}
+                {loading ? 'Please wait…' : mode === 'login' ? 'Log in' : 'Create account'}
               </Text>
             </TouchableOpacity>
 
@@ -214,7 +187,6 @@ export default function LoginScreen({ navigation, route }) {
                 🔒 Only official Thapar student Email IDs (@thapar.edu) are accepted.
               </Text>
             </View>
-
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
@@ -226,7 +198,7 @@ const styles = StyleSheet.create({
   safe:   { flex: 1, backgroundColor: COLORS.bgPage },
   scroll: { flex: 1, paddingHorizontal: SPACING.base },
 
-  backBtn:  { padding: SPACING.base, paddingBottom: SPACING.base },
+  backBtn:  { padding: SPACING.base },
   backText: { paddingTop: SPACING.md, fontSize: 14, fontWeight: FONTS.semibold, color: COLORS.primary },
 
   header:    { alignItems: 'center', paddingVertical: SPACING.xl },
