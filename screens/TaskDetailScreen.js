@@ -13,9 +13,9 @@ import { submitTask } from '../services/taskService';
 
 // ── Cloudinary config ─────────────────────────────────────────────────────────
 // Sign up free at cloudinary.com, then replace these 3 values
-const CLOUDINARY_CLOUD_NAME = 'YOUR_CLOUD_NAME';
-const CLOUDINARY_UPLOAD_PRESET = 'YOUR_UPLOAD_PRESET'; // create an unsigned preset in Cloudinary settings
-const ANTHROPIC_API_KEY = 'YOUR_ANTHROPIC_API_KEY';    // from console.anthropic.com
+const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
+const CLOUDINARY_CLOUD_NAME = process.env.CLOUDINARY_CLOUD_NAME;
+const CLOUDINARY_UPLOAD_PRESET = process.env.CLOUDINARY_UPLOAD_PRESET;
 
 // ── Upload photo to Cloudinary ─────────────────────────────────────────────────
 const uploadToCloudinary = async (imageUri) => {

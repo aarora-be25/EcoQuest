@@ -8,3 +8,4 @@ dist/
 *.mobileprovision
 web-build/
 firebaseConfig.js
+.env
