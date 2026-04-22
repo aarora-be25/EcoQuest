@@ -21,10 +21,10 @@ import { db, storage } from '../firebaseConfig';
 // Define your campus as a simple bounding box (easiest for now).
 // Get your campus lat/lng from Google Maps and adjust.
 const CAMPUS_BOUNDS = {
-  minLat: 30.349,   // ← replace with your campus SW corner
-  maxLat: 30.360,   // ← replace with your campus NE corner
-  minLng: 76.358,
-  maxLng: 76.370,
+  minLat: 30.3505,
+  maxLat: 30.3586,
+  minLng: 76.3594,
+  maxLng: 76.3732,
 };
 
 // ─── TASK DEFINITIONS ────────────────────────────────────────────────────────
