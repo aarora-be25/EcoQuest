@@ -15,7 +15,7 @@ import {
   Timestamp,
 } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { db, storage } from '../firebaseConfig';
+import { db, storage } from '../firebase/firebaseConfig';
 
 // ─── CAMPUS BOUNDARY ──────────────────────────────────────────────────────────
 // Define your campus as a simple bounding box (easiest for now).

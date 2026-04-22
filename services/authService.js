@@ -7,7 +7,7 @@ import {
   updateProfile,
 } from 'firebase/auth';
 import { doc, setDoc, getDoc, serverTimestamp } from 'firebase/firestore';
-import { auth, db } from '../firebaseConfig';
+import { auth, db } from '../firebase/firebaseConfig';
 
 // ─── CONFIGURE YOUR COLLEGE DOMAIN HERE ───────────────────────────────────────
 const ALLOWED_DOMAIN = '@thapar.edu'; // change to your college email domain

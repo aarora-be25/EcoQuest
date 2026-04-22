@@ -3,7 +3,7 @@
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../firebaseConfig';
+import { auth } from '../firebase/firebaseConfig';
 import { getUserProfile } from '../services/authService';
 
 const AuthContext = createContext(null);

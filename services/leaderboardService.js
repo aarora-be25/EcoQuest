@@ -8,7 +8,7 @@ import {
   getDocs,
   where,
 } from 'firebase/firestore';
-import { db } from '../firebaseConfig';
+import { db } from '../firebase/firebaseConfig';
 
 /**
  * Fetches top N users by monthly points.
