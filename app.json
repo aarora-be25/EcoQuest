@@ -1,0 +1,33 @@
+{
+  "expo": {
+    "name": "EcoQuest",
+    "slug": "ecoquest",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#acddfc"
+    },
+    "updates": {
+      "enabled": false
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "edu.tiet.ecoquest"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#acddfc"
+      },
+      "package": "edu.tiet.ecoquest"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ee0dfe06-3658-46c4-b6f2-cdbba9fd4286"
+      }
+    }
+  }
+}
